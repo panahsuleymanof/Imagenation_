@@ -15,6 +15,9 @@
 		C199CFB42C54E40000E2A22F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C199CFB32C54E40000E2A22F /* Base */; };
 		C199CFBD2C5A5F1700E2A22F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFBC2C5A5F1700E2A22F /* LoginController.swift */; };
 		C199CFC02C5A5F3A00E2A22F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFBF2C5A5F3A00E2A22F /* RegisterController.swift */; };
+		C199CFFB2C665FC900E2A22F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFFA2C665FC900E2A22F /* Coordinator.swift */; };
+		C199CFFE2C66602200E2A22F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFFD2C66602200E2A22F /* LoginViewModel.swift */; };
+		C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFFF2C6660A900E2A22F /* LoginCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		C199CFB52C54E40000E2A22F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C199CFBC2C5A5F1700E2A22F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		C199CFBF2C5A5F3A00E2A22F /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		C199CFFA2C665FC900E2A22F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C199CFFD2C66602200E2A22F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C199CFFF2C6660A900E2A22F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +66,7 @@
 		C199CFA62C54E3FF00E2A22F /* Imagenation */ = {
 			isa = PBXGroup;
 			children = (
-				C199CFF32C63C1B100E2A22F /* XIB */,
+				C199CFF92C665FB800E2A22F /* Helper */,
 				C199CFBB2C5A5EF900E2A22F /* Scene */,
 				C199CFA72C54E3FF00E2A22F /* AppDelegate.swift */,
 				C199CFA92C54E3FF00E2A22F /* SceneDelegate.swift */,
@@ -76,17 +82,36 @@
 		C199CFBB2C5A5EF900E2A22F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				C199CFBC2C5A5F1700E2A22F /* LoginController.swift */,
-				C199CFBF2C5A5F3A00E2A22F /* RegisterController.swift */,
+				C199D0012C66661600E2A22F /* Register */,
+				C199CFFC2C66601400E2A22F /* Login */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
 		};
-		C199CFF32C63C1B100E2A22F /* XIB */ = {
+		C199CFF92C665FB800E2A22F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				C199CFFA2C665FC900E2A22F /* Coordinator.swift */,
 			);
-			path = XIB;
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		C199CFFC2C66601400E2A22F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C199CFBC2C5A5F1700E2A22F /* LoginController.swift */,
+				C199CFFD2C66602200E2A22F /* LoginViewModel.swift */,
+				C199CFFF2C6660A900E2A22F /* LoginCoordinator.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C199D0012C66661600E2A22F /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				C199CFBF2C5A5F3A00E2A22F /* RegisterController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,9 +187,12 @@
 			files = (
 				C199CFC02C5A5F3A00E2A22F /* RegisterController.swift in Sources */,
 				C199CFAC2C54E3FF00E2A22F /* ViewController.swift in Sources */,
+				C199CFFB2C665FC900E2A22F /* Coordinator.swift in Sources */,
 				C199CFBD2C5A5F1700E2A22F /* LoginController.swift in Sources */,
 				C199CFA82C54E3FF00E2A22F /* AppDelegate.swift in Sources */,
 				C199CFAA2C54E3FF00E2A22F /* SceneDelegate.swift in Sources */,
+				C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */,
+				C199CFFE2C66602200E2A22F /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
