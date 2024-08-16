@@ -19,4 +19,8 @@ class LoginCoordinator: Coordinator {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
         navigationController.show(controller, sender: nil)
     }
+    
+    func back() {
+        navigationController.popViewController(animated: true)
+    }
 }

@@ -18,6 +18,15 @@
 		C199CFFB2C665FC900E2A22F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFFA2C665FC900E2A22F /* Coordinator.swift */; };
 		C199CFFE2C66602200E2A22F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFFD2C66602200E2A22F /* LoginViewModel.swift */; };
 		C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFFF2C6660A900E2A22F /* LoginCoordinator.swift */; };
+		C199D0302C6CBBF600E2A22F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D02F2C6CBBF600E2A22F /* RegisterViewModel.swift */; };
+		C199D0332C6CBC4800E2A22F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0322C6CBC4800E2A22F /* HomeController.swift */; };
+		C199D0382C6CD14C00E2A22F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0372C6CD14C00E2A22F /* HomeViewModel.swift */; };
+		C199D03C2C6E888700E2A22F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C199D03B2C6E888700E2A22F /* Alamofire */; };
+		C199D03F2C6E88E200E2A22F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C199D03E2C6E88E200E2A22F /* Kingfisher */; };
+		C199D0422C6E891200E2A22F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0412C6E891200E2A22F /* NetworkManager.swift */; };
+		C199D0442C6E893C00E2A22F /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0432C6E893C00E2A22F /* NetworkConstants.swift */; };
+		C199D0462C6F93C000E2A22F /* RandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0452C6F93C000E2A22F /* RandomPhoto.swift */; };
+		C199D0492C6F943D00E2A22F /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0482C6F943D00E2A22F /* PhotoService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,13 @@
 		C199CFFA2C665FC900E2A22F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C199CFFD2C66602200E2A22F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C199CFFF2C6660A900E2A22F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		C199D02F2C6CBBF600E2A22F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		C199D0322C6CBC4800E2A22F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		C199D0372C6CD14C00E2A22F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C199D0412C6E891200E2A22F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C199D0432C6E893C00E2A22F /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		C199D0452C6F93C000E2A22F /* RandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhoto.swift; sourceTree = "<group>"; };
+		C199D0482C6F943D00E2A22F /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C199D03F2C6E88E200E2A22F /* Kingfisher in Frameworks */,
+				C199D03C2C6E888700E2A22F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +84,8 @@
 		C199CFA62C54E3FF00E2A22F /* Imagenation */ = {
 			isa = PBXGroup;
 			children = (
+				C199D0392C6E881C00E2A22F /* Network */,
+				C199D0342C6CCFF400E2A22F /* Model */,
 				C199CFF92C665FB800E2A22F /* Helper */,
 				C199CFBB2C5A5EF900E2A22F /* Scene */,
 				C199CFA72C54E3FF00E2A22F /* AppDelegate.swift */,
@@ -82,6 +102,7 @@
 		C199CFBB2C5A5EF900E2A22F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C199D0312C6CBC2700E2A22F /* Home */,
 				C199D0012C66661600E2A22F /* Register */,
 				C199CFFC2C66601400E2A22F /* Login */,
 			);
@@ -110,8 +131,52 @@
 			isa = PBXGroup;
 			children = (
 				C199CFBF2C5A5F3A00E2A22F /* RegisterController.swift */,
+				C199D02F2C6CBBF600E2A22F /* RegisterViewModel.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		C199D0312C6CBC2700E2A22F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C199D0322C6CBC4800E2A22F /* HomeController.swift */,
+				C199D0372C6CD14C00E2A22F /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C199D0342C6CCFF400E2A22F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C199D0452C6F93C000E2A22F /* RandomPhoto.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C199D0392C6E881C00E2A22F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C199D0472C6F942300E2A22F /* Random */,
+				C199D0402C6E88FD00E2A22F /* Core */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C199D0402C6E88FD00E2A22F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C199D0412C6E891200E2A22F /* NetworkManager.swift */,
+				C199D0432C6E893C00E2A22F /* NetworkConstants.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C199D0472C6F942300E2A22F /* Random */ = {
+			isa = PBXGroup;
+			children = (
+				C199D0482C6F943D00E2A22F /* PhotoService.swift */,
+			);
+			path = Random;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +195,10 @@
 			dependencies = (
 			);
 			name = Imagenation;
+			packageProductDependencies = (
+				C199D03B2C6E888700E2A22F /* Alamofire */,
+				C199D03E2C6E88E200E2A22F /* Kingfisher */,
+			);
 			productName = Imagenation;
 			productReference = C199CFA42C54E3FF00E2A22F /* Imagenation.app */;
 			productType = "com.apple.product-type.application";
@@ -158,6 +227,10 @@
 				Base,
 			);
 			mainGroup = C199CF9B2C54E3FF00E2A22F;
+			packageReferences = (
+				C199D03A2C6E888700E2A22F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C199D03D2C6E88E200E2A22F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = C199CFA52C54E3FF00E2A22F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -185,13 +258,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C199D0442C6E893C00E2A22F /* NetworkConstants.swift in Sources */,
 				C199CFC02C5A5F3A00E2A22F /* RegisterController.swift in Sources */,
 				C199CFAC2C54E3FF00E2A22F /* ViewController.swift in Sources */,
+				C199D0422C6E891200E2A22F /* NetworkManager.swift in Sources */,
 				C199CFFB2C665FC900E2A22F /* Coordinator.swift in Sources */,
+				C199D0492C6F943D00E2A22F /* PhotoService.swift in Sources */,
 				C199CFBD2C5A5F1700E2A22F /* LoginController.swift in Sources */,
+				C199D0332C6CBC4800E2A22F /* HomeController.swift in Sources */,
 				C199CFA82C54E3FF00E2A22F /* AppDelegate.swift in Sources */,
+				C199D0382C6CD14C00E2A22F /* HomeViewModel.swift in Sources */,
 				C199CFAA2C54E3FF00E2A22F /* SceneDelegate.swift in Sources */,
 				C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */,
+				C199D0462C6F93C000E2A22F /* RandomPhoto.swift in Sources */,
+				C199D0302C6CBBF600E2A22F /* RegisterViewModel.swift in Sources */,
 				C199CFFE2C66602200E2A22F /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +499,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C199D03A2C6E888700E2A22F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		C199D03D2C6E88E200E2A22F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C199D03B2C6E888700E2A22F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C199D03A2C6E888700E2A22F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		C199D03E2C6E88E200E2A22F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C199D03D2C6E88E200E2A22F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C199CF9C2C54E3FF00E2A22F /* Project object */;
 }
