@@ -33,6 +33,7 @@
 		C199D0442C6E893C00E2A22F /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0432C6E893C00E2A22F /* NetworkConstants.swift */; };
 		C199D0462C6F93C000E2A22F /* RandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0452C6F93C000E2A22F /* RandomPhoto.swift */; };
 		C199D0492C6F943D00E2A22F /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0482C6F943D00E2A22F /* PhotoService.swift */; };
+		C199D04C2C6FAA3400E2A22F /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D04B2C6FAA3400E2A22F /* ProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		C199D0432C6E893C00E2A22F /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		C199D0452C6F93C000E2A22F /* RandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhoto.swift; sourceTree = "<group>"; };
 		C199D0482C6F943D00E2A22F /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		C199D04B2C6FAA3400E2A22F /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		C199CFBB2C5A5EF900E2A22F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C199D04A2C6FAA1500E2A22F /* Profile */,
 				C199D0312C6CBC2700E2A22F /* Home */,
 				C199D0012C66661600E2A22F /* Register */,
 				C199CFFC2C66601400E2A22F /* Login */,
@@ -227,6 +230,14 @@
 				C199D0482C6F943D00E2A22F /* PhotoService.swift */,
 			);
 			path = Random;
+			sourceTree = "<group>";
+		};
+		C199D04A2C6FAA1500E2A22F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C199D04B2C6FAA3400E2A22F /* ProfileController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				C121470A2C78BC1200E095BA /* TopicHeaderView.swift in Sources */,
 				C12147102C78BCE400E095BA /* TopicCell.swift in Sources */,
 				C199CFBD2C5A5F1700E2A22F /* LoginController.swift in Sources */,
+				C199D04C2C6FAA3400E2A22F /* ProfileController.swift in Sources */,
 				C199D0332C6CBC4800E2A22F /* HomeController.swift in Sources */,
 				C199CFA82C54E3FF00E2A22F /* AppDelegate.swift in Sources */,
 				C199D0382C6CD14C00E2A22F /* HomeViewModel.swift in Sources */,
