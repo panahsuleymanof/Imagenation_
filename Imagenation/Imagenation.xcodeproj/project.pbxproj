@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C12147052C78B62200E095BA /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12147032C78B62200E095BA /* ImageCell.swift */; };
+		C12147062C78B62200E095BA /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C12147042C78B62200E095BA /* ImageCell.xib */; };
+		C121470A2C78BC1200E095BA /* TopicHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12147082C78BC1200E095BA /* TopicHeaderView.swift */; };
+		C121470B2C78BC1200E095BA /* TopicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C12147092C78BC1200E095BA /* TopicHeaderView.xib */; };
+		C12147102C78BCE400E095BA /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121470E2C78BCE400E095BA /* TopicCell.swift */; };
+		C12147112C78BCE400E095BA /* TopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C121470F2C78BCE400E095BA /* TopicCell.xib */; };
+		C16532492C76331D007BDF7F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C16532482C76331D007BDF7F /* Kingfisher */; };
+		C1757BD72C7635D3006F4F1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C1757BD62C7635D3006F4F1C /* Alamofire */; };
 		C199CFA82C54E3FF00E2A22F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFA72C54E3FF00E2A22F /* AppDelegate.swift */; };
 		C199CFAA2C54E3FF00E2A22F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFA92C54E3FF00E2A22F /* SceneDelegate.swift */; };
 		C199CFAC2C54E3FF00E2A22F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFAB2C54E3FF00E2A22F /* ViewController.swift */; };
@@ -21,8 +29,6 @@
 		C199D0302C6CBBF600E2A22F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D02F2C6CBBF600E2A22F /* RegisterViewModel.swift */; };
 		C199D0332C6CBC4800E2A22F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0322C6CBC4800E2A22F /* HomeController.swift */; };
 		C199D0382C6CD14C00E2A22F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0372C6CD14C00E2A22F /* HomeViewModel.swift */; };
-		C199D03C2C6E888700E2A22F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C199D03B2C6E888700E2A22F /* Alamofire */; };
-		C199D03F2C6E88E200E2A22F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C199D03E2C6E88E200E2A22F /* Kingfisher */; };
 		C199D0422C6E891200E2A22F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0412C6E891200E2A22F /* NetworkManager.swift */; };
 		C199D0442C6E893C00E2A22F /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0432C6E893C00E2A22F /* NetworkConstants.swift */; };
 		C199D0462C6F93C000E2A22F /* RandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0452C6F93C000E2A22F /* RandomPhoto.swift */; };
@@ -30,6 +36,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C12147032C78B62200E095BA /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		C12147042C78B62200E095BA /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		C12147082C78BC1200E095BA /* TopicHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderView.swift; sourceTree = "<group>"; };
+		C12147092C78BC1200E095BA /* TopicHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicHeaderView.xib; sourceTree = "<group>"; };
+		C121470E2C78BCE400E095BA /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		C121470F2C78BCE400E095BA /* TopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicCell.xib; sourceTree = "<group>"; };
 		C199CFA42C54E3FF00E2A22F /* Imagenation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C199CFA72C54E3FF00E2A22F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C199CFA92C54E3FF00E2A22F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,14 +69,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C199D03F2C6E88E200E2A22F /* Kingfisher in Frameworks */,
-				C199D03C2C6E888700E2A22F /* Alamofire in Frameworks */,
+				C16532492C76331D007BDF7F /* Kingfisher in Frameworks */,
+				C1757BD72C7635D3006F4F1C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C12146FD2C77D10100E095BA /* Reusable View */ = {
+			isa = PBXGroup;
+			children = (
+				C121470D2C78BCC300E095BA /* Header */,
+				C12147072C78BBEA00E095BA /* Topic */,
+				C12147022C78B5FD00E095BA /* Image */,
+			);
+			path = "Reusable View";
+			sourceTree = "<group>";
+		};
+		C12147022C78B5FD00E095BA /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				C12147032C78B62200E095BA /* ImageCell.swift */,
+				C12147042C78B62200E095BA /* ImageCell.xib */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		C12147072C78BBEA00E095BA /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				C121470E2C78BCE400E095BA /* TopicCell.swift */,
+				C121470F2C78BCE400E095BA /* TopicCell.xib */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
+		C121470D2C78BCC300E095BA /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				C12147082C78BC1200E095BA /* TopicHeaderView.swift */,
+				C12147092C78BC1200E095BA /* TopicHeaderView.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		C199CF9B2C54E3FF00E2A22F = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +133,7 @@
 		C199CFA62C54E3FF00E2A22F /* Imagenation */ = {
 			isa = PBXGroup;
 			children = (
+				C12146FD2C77D10100E095BA /* Reusable View */,
 				C199D0392C6E881C00E2A22F /* Network */,
 				C199D0342C6CCFF400E2A22F /* Model */,
 				C199CFF92C665FB800E2A22F /* Helper */,
@@ -196,8 +246,8 @@
 			);
 			name = Imagenation;
 			packageProductDependencies = (
-				C199D03B2C6E888700E2A22F /* Alamofire */,
-				C199D03E2C6E88E200E2A22F /* Kingfisher */,
+				C16532482C76331D007BDF7F /* Kingfisher */,
+				C1757BD62C7635D3006F4F1C /* Alamofire */,
 			);
 			productName = Imagenation;
 			productReference = C199CFA42C54E3FF00E2A22F /* Imagenation.app */;
@@ -228,8 +278,8 @@
 			);
 			mainGroup = C199CF9B2C54E3FF00E2A22F;
 			packageReferences = (
-				C199D03A2C6E888700E2A22F /* XCRemoteSwiftPackageReference "Alamofire" */,
-				C199D03D2C6E88E200E2A22F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C16532472C76331D007BDF7F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C1757BD52C7635D3006F4F1C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = C199CFA52C54E3FF00E2A22F /* Products */;
 			projectDirPath = "";
@@ -246,8 +296,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C199CFB12C54E40000E2A22F /* Assets.xcassets in Resources */,
+				C12147062C78B62200E095BA /* ImageCell.xib in Resources */,
 				C199CFB42C54E40000E2A22F /* Base in Resources */,
+				C121470B2C78BC1200E095BA /* TopicHeaderView.xib in Resources */,
 				C199CFAF2C54E3FF00E2A22F /* Base in Resources */,
+				C12147112C78BCE400E095BA /* TopicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +317,8 @@
 				C199D0422C6E891200E2A22F /* NetworkManager.swift in Sources */,
 				C199CFFB2C665FC900E2A22F /* Coordinator.swift in Sources */,
 				C199D0492C6F943D00E2A22F /* PhotoService.swift in Sources */,
+				C121470A2C78BC1200E095BA /* TopicHeaderView.swift in Sources */,
+				C12147102C78BCE400E095BA /* TopicCell.swift in Sources */,
 				C199CFBD2C5A5F1700E2A22F /* LoginController.swift in Sources */,
 				C199D0332C6CBC4800E2A22F /* HomeController.swift in Sources */,
 				C199CFA82C54E3FF00E2A22F /* AppDelegate.swift in Sources */,
@@ -271,6 +326,7 @@
 				C199CFAA2C54E3FF00E2A22F /* SceneDelegate.swift in Sources */,
 				C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */,
 				C199D0462C6F93C000E2A22F /* RandomPhoto.swift in Sources */,
+				C12147052C78B62200E095BA /* ImageCell.swift in Sources */,
 				C199D0302C6CBBF600E2A22F /* RegisterViewModel.swift in Sources */,
 				C199CFFE2C66602200E2A22F /* LoginViewModel.swift in Sources */,
 			);
@@ -433,6 +489,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,6 +520,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -501,15 +559,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C199D03A2C6E888700E2A22F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
-		C199D03D2C6E88E200E2A22F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		C16532472C76331D007BDF7F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -517,18 +567,26 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		C1757BD52C7635D3006F4F1C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C199D03B2C6E888700E2A22F /* Alamofire */ = {
+		C16532482C76331D007BDF7F /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C199D03A2C6E888700E2A22F /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		C199D03E2C6E88E200E2A22F /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C199D03D2C6E88E200E2A22F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = C16532472C76331D007BDF7F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		C1757BD62C7635D3006F4F1C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1757BD52C7635D3006F4F1C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

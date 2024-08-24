@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct RandomPhoto: Codable {
+struct Photo: Codable {
     let id: String
-    let description: String?
-    let urls: PhotoURLs
+    let urls: Urls
+    
+    struct Urls: Codable {
+        let small: String
+        let regular: String
+    }
 }
 
-struct PhotoURLs: Codable {
-    let raw: String
-    let full: String
-    let regular: String
-    let small: String
-    let thumb: String
-    let small_s3: String
+struct Topic: Codable {
+    let id: String
+    let title: String
 }

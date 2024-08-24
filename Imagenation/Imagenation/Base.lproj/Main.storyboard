@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dk2-5F-nlX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -64,29 +64,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OLO-x4-b2g">
-                                <rect key="frame" x="76.666666666666686" y="362" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Bog-41-kpR"/>
-                                    <constraint firstAttribute="width" constant="240" id="fNi-UW-g0x"/>
-                                </constraints>
-                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EXn-M5-4VP">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="d53-gy-gYd">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="50" height="40"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="TopicHeaderView" id="6kV-lu-X6X" customClass="TopicHeaderView" customModule="Imagenation" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="pXA-st-Oa6" id="cf8-KY-Rs4"/>
+                                    <outlet property="delegate" destination="pXA-st-Oa6" id="Gb6-XA-3Sq"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fY8-9h-ac9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="OLO-x4-b2g" firstAttribute="centerY" secondItem="zGs-bi-am2" secondAttribute="centerY" id="LTK-z2-laI"/>
-                            <constraint firstItem="OLO-x4-b2g" firstAttribute="centerX" secondItem="zGs-bi-am2" secondAttribute="centerX" id="vGB-jb-NoD"/>
+                            <constraint firstItem="EXn-M5-4VP" firstAttribute="top" secondItem="fY8-9h-ac9" secondAttribute="top" id="HRX-Lq-P0o"/>
+                            <constraint firstItem="EXn-M5-4VP" firstAttribute="leading" secondItem="fY8-9h-ac9" secondAttribute="leading" id="fiP-Dm-vL6"/>
+                            <constraint firstItem="fY8-9h-ac9" firstAttribute="bottom" secondItem="EXn-M5-4VP" secondAttribute="bottom" id="kFk-0K-StH"/>
+                            <constraint firstItem="fY8-9h-ac9" firstAttribute="trailing" secondItem="EXn-M5-4VP" secondAttribute="trailing" id="qBf-au-ajy"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="gallery" id="sFX-eT-WcK">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="7Fo-c4-0ud"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="imageView" destination="OLO-x4-b2g" id="uM0-po-E4x"/>
+                        <outlet property="collection" destination="EXn-M5-4VP" id="ip2-c2-93O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tgq-wp-jw8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2674" y="199"/>
+            <point key="canvasLocation" x="-2674.0458015267172" y="198.59154929577466"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="blF-ea-zYw">
@@ -95,7 +113,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2hD-Js-4WU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="xiq-Vi-aIf" kind="relationship" relationship="viewControllers" id="xaq-eg-Ui1"/>
@@ -409,7 +429,7 @@
         <scene sceneID="Ho7-Mp-Qvl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hZ3-MT-08i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="wMT-Tq-BgM"/>
+                    <tabBarItem key="tabBarItem" title="" image="search" id="wMT-Tq-BgM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPx-Rk-XcT">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -424,11 +444,11 @@
             </objects>
             <point key="canvasLocation" x="-1335" y="-573"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="606-Cg-n1g">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLa-NM-oNq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="l3T-aH-XXw"/>
+                    <tabBarItem key="tabBarItem" title="" image="collections" id="l3T-aH-XXw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T8c-Uz-WRX">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -443,11 +463,11 @@
             </objects>
             <point key="canvasLocation" x="-199" y="-573"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="GBX-EW-1hV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ui3-HB-suf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="2nJ-Og-zoS"/>
+                    <tabBarItem key="tabBarItem" title="" image="user" id="2nJ-Og-zoS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="x90-gE-GT1">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -483,7 +503,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gallery" width="24" height="24"/>
+        <image name="collections" width="30" height="30"/>
+        <image name="gallery" width="30" height="30"/>
+        <image name="search" width="30" height="30"/>
+        <image name="user" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
