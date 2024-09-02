@@ -21,3 +21,10 @@ struct Topic: Codable {
     let id: String
     let title: String
 }
+
+struct UserInfo: Codable {
+    let firstName: String
+    let lastName: String
+    let username: String
+    let email: String
+}

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestoreInternal
 
 class RegisterController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstNameField: UITextField!
@@ -20,6 +22,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pswdView: UIView!
     
     let viewModel = RegisterViewModel()
+    let database = Firestore.firestore()
+    var logInCallBack: ((String, String) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +81,29 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
-        let coordinator = LoginCoordinator(navigationController: self.navigationController ?? UINavigationController())
-        coordinator.back()
+        if let name = firstNameField.text,
+           let surname = lastNameField.text,
+           let username = usernameField.text,
+           let email = emailField.text,
+           let password = pswdField.text {
+            if !name.isEmpty && !email.isEmpty && !surname.isEmpty && !password.isEmpty {
+                Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                    if let user = result?.user {
+                        let data: [String : Any] = [
+                            "firstName": name,
+                            "lastName": surname,
+                            "username": username,
+                            "email": email
+                        ]
+                        self.database.collection("Users").document(email).setData(data)
+                        let email = user.email ?? ""
+                        self.logInCallBack?(email, password)
+                        self.navigationController?.popViewController(animated: true)
+                    } else {
+                        print(error?.localizedDescription ?? "")
+                    }
+                }
+            }
+        }
     }
 }

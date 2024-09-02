@@ -6,6 +6,17 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestoreInternal
+
+class UserDetails {
+    static let shared = UserDetails()
+    
+    var name = ""
+    var surname = ""
+    var username = ""
+    var email = ""
+}
 
 class LoginController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
@@ -14,6 +25,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var pswdFieldView: UIView!
     
     let viewModel = LoginViewModel()
+    let database = Firestore.firestore()
+    var users = [UserInfo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,12 +72,56 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func logInTapped(_ sender: Any) {
-        
+        func getUsers() -> [UserInfo] {
+            var allUsers = [UserInfo]()
+            database.collection("Users").getDocuments { snapshot, error in
+                if let error {
+                    print(error.localizedDescription)
+                } else if let snapshot {
+                    for document in snapshot.documents {
+                        let dict = document.data()
+                        if let jsonData = try? JSONSerialization.data(withJSONObject: dict) {
+                            do {
+                                let user = try JSONDecoder().decode(UserInfo.self, from: jsonData)
+                                allUsers.append(user)
+                            } catch {
+                                print("error: \(error.localizedDescription)")
+                            }
+                        }
+                    }
+                }
+            }
+            return allUsers
+        }
+        if let email = emailField.text,
+           let password = pswdField.text {
+            Auth.auth().signIn(withEmail: email, password: password) { authResult,error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    let users = getUsers()
+                    if let userIndex = users.firstIndex(where: {$0.email == email}) {
+                        UserDetails.shared.email = email
+                        UserDetails.shared.name = users[userIndex].firstName
+                        UserDetails.shared.surname = users[userIndex].lastName
+                        UserDetails.shared.username = users[userIndex].username
+                    }
+//                    let vc = self.storyboard?.instantiateViewController(identifier: "\(HomeController.self)") as! HomeController
+//                    self.navigationController?.show(vc, sender: nil)
+                }
+            }
+        }
     }
     
     @IBAction func joinTapped(_ sender: Any) {
-        let coordinator = LoginCoordinator(navigationController: self.navigationController ?? UINavigationController())
-        coordinator.start()
+//        let coordinator = LoginCoordinator(navigationController: self.navigationController ?? UINavigationController())
+//        coordinator.start()
+        let vc = storyboard?.instantiateViewController(identifier: "\(RegisterController.self)") as! RegisterController
+        vc.logInCallBack = { [weak self] email, password in
+            self?.emailField.text = email
+            self?.pswdField.text = password
+        }
+        navigationController?.show(vc, sender: nil)
     }
 }
 

@@ -13,7 +13,7 @@ class TopicCell: UICollectionViewCell {
     @IBOutlet weak var view: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundColor = .clear
+        topicName.backgroundColor = .clear
     }
-
 }

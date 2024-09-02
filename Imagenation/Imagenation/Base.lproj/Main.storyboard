@@ -137,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aum-S9-NpG">
-                                <rect key="frame" x="82.333333333333329" y="343" width="228.66666666666669" height="33.333333333333314"/>
+                                <rect key="frame" x="82.333333333333314" y="343" width="228.66666666666669" height="33.333333333333314"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Don't have an account? Join">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>

@@ -20,6 +20,8 @@ class TopicHeaderView: UICollectionReusableView {
         collection.dataSource = self
         collection.delegate = self
         collection.register(UINib(nibName: "\(TopicCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(TopicCell.self)")
+        collection.backgroundColor = .clear
+        collection.showsHorizontalScrollIndicator = false
     }
     
     func configure(topics: [Topic], onTopicSelected: @escaping (Topic) -> Void) {
@@ -50,9 +52,11 @@ extension TopicHeaderView: UICollectionViewDataSource {
 
 extension TopicHeaderView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         let selectedTopic = topics[indexPath.item]
         onTopicSelected?(selectedTopic)
-        if let previousIndex = selectedIndex, let previousCell = collectionView.cellForItem(at: previousIndex) as? TopicCell {
+        if let previousIndex = selectedIndex, 
+            let previousCell = collectionView.cellForItem(at: previousIndex) as? TopicCell {
             previousCell.view.backgroundColor = .gray
         }
         

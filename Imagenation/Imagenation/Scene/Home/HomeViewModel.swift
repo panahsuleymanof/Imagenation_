@@ -6,52 +6,50 @@
 //
 
 import Foundation
-import Alamofire
-
-class FetchTopics {
-    static let shared = FetchTopics()
-    
-    func fetchTopics(completion: @escaping ([Topic]?) -> Void) {
-        let url = "https://api.unsplash.com/topics"
-        let parameters: [String: String] = ["client_id": "xczTRip4D5Xl2l8kR4mvZ-VISN6gUyOXJmGDFFt_mXY"]
-        
-        AF.request(url, parameters: parameters).responseDecodable(of: [Topic].self) { response in
-            switch response.result {
-            case .success(let topics):
-                completion(topics)
-            case .failure(let error):
-                print("Failed to fetch topics: \(error)")
-                completion(nil)
-            }
-        }
-    }
-    
-    func fetchPhotos(forTopic topicID: String, completion: @escaping ([Photo]?) -> Void) {
-        let url = "https://api.unsplash.com/topics/\(topicID)/photos"
-        let parameters: [String: String] = ["client_id": "xczTRip4D5Xl2l8kR4mvZ-VISN6gUyOXJmGDFFt_mXY"]
-        
-        AF.request(url, parameters: parameters).responseDecodable(of: [Photo].self) { response in
-            switch response.result {
-            case .success(let photos):
-                completion(photos)
-            case .failure(let error):
-                print("Failed to fetch photos: \(error)")
-                completion(nil)
-            }
-        }
-    }
-}
 
 class HomeViewModel {
-//    var photoURL = [PhotoURLs]()
-//    func getPhotos() {
-//        PhotoService.fetchRandomPhoto { photo, errorMessage in
-//            if let photo {
-//                self.photoURL.append(photo.urls)
-//                print(self.photoURL)
-//            } else if let errorMessage {
-//                print(errorMessage)
-//            }
+    var topics = [Topic]()
+    var photos = [Photo]()
+    var page = 1
+    var success: (() -> Void)?
+    var error: ((String) -> Void)?
+    
+    let topicManager = TopicManager()
+    let photoManager = PhotoManager()
+    
+    func getTopics() {
+//        for page in 1...2 {
+            topicManager.getTopics(page: page) { data, errorMessage in
+                if let errorMessage {
+                    self.error?(errorMessage)
+                } else if let data {
+                    self.topics.append(contentsOf: data)
+                    self.success?()
+                    self.getPhotos(topicID: data.first?.id ?? "")
+                }
+            }
 //        }
-//    }
+    }
+    
+    func getPhotos(topicID: String, isFromTopic: Bool = false) {
+        photoManager.getPhotos(page: page, id: topicID) { data, errorMessage in
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                if isFromTopic {
+                    self.photos.removeAll()
+                }
+                self.photos.append(contentsOf: data)
+                self.success?()
+            }
+        }
+    }
+    
+    func pagination(index: Int, id: String) {
+        print("index: \(index) and count: \(photos.count) and page: \(page)")
+        if index == photos.count - 1 && page <= 1500 {
+            page += 1
+            getPhotos(topicID: id)
+        }
+    }
 }

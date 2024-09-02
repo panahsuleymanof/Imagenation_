@@ -18,14 +18,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic's Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYg-qQ-Sen">
-                        <rect key="frame" x="0.0" y="0.0" width="141" height="66"/>
+                        <rect key="frame" x="18.999999999999993" y="0.0" width="103.33333333333331" height="66"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ovt-bd-6yq">
-                        <rect key="frame" x="0.0" y="66" width="141" height="2"/>
+                        <rect key="frame" x="18.999999999999993" y="66" width="103.33333333333331" height="2"/>
                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" id="s7w-ag-4LT"/>
@@ -36,12 +36,11 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="zYg-qQ-Sen" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ATX-Ma-fw0"/>
-                <constraint firstAttribute="trailing" secondItem="zYg-qQ-Sen" secondAttribute="trailing" id="ILY-I6-sIt"/>
-                <constraint firstItem="Ovt-bd-6yq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PEV-qK-0zt"/>
-                <constraint firstAttribute="trailing" secondItem="Ovt-bd-6yq" secondAttribute="trailing" id="PHA-nC-yAL"/>
+                <constraint firstItem="zYg-qQ-Sen" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="cFz-dN-8Qb"/>
+                <constraint firstItem="Ovt-bd-6yq" firstAttribute="leading" secondItem="zYg-qQ-Sen" secondAttribute="leading" id="edX-84-CD9"/>
                 <constraint firstAttribute="bottom" secondItem="Ovt-bd-6yq" secondAttribute="bottom" id="f5d-NZ-Wnr"/>
                 <constraint firstAttribute="bottom" secondItem="zYg-qQ-Sen" secondAttribute="bottom" constant="2" id="qZ1-EW-yhE"/>
-                <constraint firstItem="zYg-qQ-Sen" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wF2-bL-WNF"/>
+                <constraint firstItem="Ovt-bd-6yq" firstAttribute="trailing" secondItem="zYg-qQ-Sen" secondAttribute="trailing" id="s3G-2P-yLD"/>
             </constraints>
             <size key="customSize" width="141" height="68"/>
             <connections>
