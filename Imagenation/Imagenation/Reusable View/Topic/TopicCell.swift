@@ -15,5 +15,7 @@ class TopicCell: UICollectionViewCell {
         super.awakeFromNib()
         backgroundColor = .clear
         topicName.backgroundColor = .clear
+        topicName.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        topicName.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
 }

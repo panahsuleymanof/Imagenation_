@@ -47,7 +47,6 @@ extension TopicHeaderView: UICollectionViewDataSource {
         }
         return cell
     }
-    
 }
 
 extension TopicHeaderView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

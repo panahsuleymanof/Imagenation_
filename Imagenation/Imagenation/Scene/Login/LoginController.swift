@@ -27,6 +27,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     let viewModel = LoginViewModel()
     let database = Firestore.firestore()
     var users = [UserInfo]()
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,43 +72,49 @@ class LoginController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func logInTapped(_ sender: Any) {
-        func getUsers() -> [UserInfo] {
-            var allUsers = [UserInfo]()
-            database.collection("Users").getDocuments { snapshot, error in
-                if let error {
-                    print(error.localizedDescription)
-                } else if let snapshot {
-                    for document in snapshot.documents {
-                        let dict = document.data()
-                        if let jsonData = try? JSONSerialization.data(withJSONObject: dict) {
-                            do {
-                                let user = try JSONDecoder().decode(UserInfo.self, from: jsonData)
-                                allUsers.append(user)
-                            } catch {
-                                print("error: \(error.localizedDescription)")
-                            }
+    func getUsers(completion: @escaping ([UserInfo]) -> Void) {
+        var allUsers = [UserInfo]()
+        database.collection("Users").getDocuments { snapshot, error in
+            if let error {
+                print(error.localizedDescription)
+            } else if let snapshot {
+                for document in snapshot.documents {
+                    let dict = document.data()
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: dict) {
+                        do {
+                            let user = try JSONDecoder().decode(UserInfo.self, from: jsonData)
+                            allUsers.append(user)
+                        } catch {
+                            print("error: \(error.localizedDescription)")
                         }
                     }
                 }
+                completion(allUsers)
             }
-            return allUsers
         }
+    }
+    
+    @IBAction func logInTapped(_ sender: Any) {
         if let email = emailField.text,
            let password = pswdField.text {
             Auth.auth().signIn(withEmail: email, password: password) { authResult,error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    let users = getUsers()
-                    if let userIndex = users.firstIndex(where: {$0.email == email}) {
-                        UserDetails.shared.email = email
-                        UserDetails.shared.name = users[userIndex].firstName
-                        UserDetails.shared.surname = users[userIndex].lastName
-                        UserDetails.shared.username = users[userIndex].username
+                    self.getUsers { users in
+                        if let userIndex = users.firstIndex(where: {$0.email == email}) {
+                            UserDetails.shared.email = email
+                            UserDetails.shared.name = users[userIndex].firstName
+                            UserDetails.shared.surname = users[userIndex].lastName
+                            UserDetails.shared.username = users[userIndex].username
+                            self.userDefaults.set("\(users[userIndex].firstName) \(users[userIndex].lastName)", forKey: "fullName")
+                            self.userDefaults.set(true, forKey: "isLoggedIn")
+                            let scene = UIApplication.shared.connectedScenes.first
+                            if let sceneDelegate: SceneDelegate = scene?.delegate as? SceneDelegate {
+                                sceneDelegate.setHomeAsRoot()
+                        }
                     }
-//                    let vc = self.storyboard?.instantiateViewController(identifier: "\(HomeController.self)") as! HomeController
-//                    self.navigationController?.show(vc, sender: nil)
+                    }
                 }
             }
         }
