@@ -42,6 +42,12 @@ class SearchController: UIViewController {
     }
     
     func configureUI() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets.zero
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .vertical
+        
         collection.register(UINib(nibName: "CategoryHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoryHeaderView")
         collection.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
     }
@@ -87,7 +93,8 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width/2 - 2, height: 200)
+        let width = collectionView.frame.width / 2
+        return CGSize(width: width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

@@ -49,7 +49,7 @@ extension TopicHeaderView: UICollectionViewDataSource {
     }
 }
 
-extension TopicHeaderView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension TopicHeaderView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         let selectedTopic = topics[indexPath.item]
@@ -65,8 +65,29 @@ extension TopicHeaderView: UICollectionViewDelegate, UICollectionViewDelegateFlo
         
         selectedIndex = indexPath
     }
+}
+
+extension TopicHeaderView: UICollectionViewDelegateFlowLayout {
     
+    // Set no space between items
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    // Dynamically calculate item size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: 140, height: 40)
+        let topic = topics[indexPath.item]
+        let estimatedWidth = calculateWidth(for: topic.title)
+        return CGSize(width: estimatedWidth, height: 40)
+    }
+    
+    // Simple function to calculate the width of the text with padding
+    func calculateWidth(for text: String) -> CGFloat {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.sizeToFit()
+        
+        return label.frame.width + 40 // Add padding (10 points on each side)
     }
 }

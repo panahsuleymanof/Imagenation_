@@ -9,9 +9,12 @@ import UIKit
 import Kingfisher
 
 class PhotoDetailController: UIViewController {
-
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var likeButton: UIButton!
     
+    let viewModel = PhotoDetailViewModel()
+    
+    var photoId: String?
     var photoURL: String?
     var username: String?
 
@@ -23,5 +26,9 @@ class PhotoDetailController: UIViewController {
         if let author = username {
             title = author
         }
+    }
+    
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        
     }
 }

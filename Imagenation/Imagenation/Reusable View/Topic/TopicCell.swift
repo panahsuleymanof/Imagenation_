@@ -15,7 +15,8 @@ class TopicCell: UICollectionViewCell {
         super.awakeFromNib()
         backgroundColor = .clear
         topicName.backgroundColor = .clear
-        topicName.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        topicName.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        topicName.adjustsFontSizeToFitWidth = true // Enable dynamic font resizing
+        topicName.minimumScaleFactor = 0.8 // Allow the font to scale down to 80% of its original size
+        topicName.lineBreakMode = .byTruncatingTail // To handle longer text
     }
 }

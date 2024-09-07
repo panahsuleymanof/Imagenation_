@@ -1,5 +1,5 @@
 {
-  "originHash" : "79c1d8e0229643af489b6a3eb5d23c1582943ba5b7f0701f8c890550abf4074c",
+  "originHash" : "a0b876f0117922815272b5c5883fe7850eb8ea9040263e96fca2e27a7003d0cc",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "21fe1af9be463a359aaf8d96789ef73fc3760d09",
         "version" : "11.0.1"
+      }
+    },
+    {
+      "identity" : "chtcollectionviewwaterfalllayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git",
+      "state" : {
+        "revision" : "1fe42247efc8aea1ad03332d2b44f2d7fb1644bc",
+        "version" : "0.9.10"
       }
     },
     {

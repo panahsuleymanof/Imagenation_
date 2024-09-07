@@ -95,25 +95,32 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
         let photo = viewModel.photos[indexPath.item]
         vc.photoURL = photo.urls.raw
         vc.username = photo.user.name
+        vc.photoId = photo.id
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
     }
 }
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Get the photo from the ViewModel
         let photo = viewModel.photos[indexPath.item]
         
-        // Safely unwrap width and height
+        // Ensure image width and height are available
         guard let imageWidth = photo.width, let imageHeight = photo.height else {
-            return CGSize(width: collectionView.frame.width, height: 200) // Default size if no data
+            // Provide a default size if dimensions are not available
+            return CGSize(width: collectionView.frame.width, height: 300)
         }
         
-        // Calculate aspect ratio
+        // Calculate the aspect ratio
         let aspectRatio = CGFloat(imageHeight) / CGFloat(imageWidth)
+        
+        // Use the width of the collection view and adjust the height based on aspect ratio
         let cellWidth = collectionView.frame.width
         let cellHeight = cellWidth * aspectRatio
         
+        // Return the calculated size for the cell
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
