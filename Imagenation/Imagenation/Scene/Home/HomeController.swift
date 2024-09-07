@@ -66,12 +66,13 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
         let photo = viewModel.photos[indexPath.item]
         if let url = URL(string: photo.urls.regular) {
             cell.image.kf.setImage(with: url)
+            cell.userName.text = photo.user.name
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: 200)
+        .init(width: collectionView.frame.width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -91,5 +92,30 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         viewModel.pagination(index: indexPath.item, id: selectedTopic?.id ?? "")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Safely instantiate the PhotoDetailController
+        guard let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as? PhotoDetailController else {
+            print("Error: Could not instantiate PhotoDetailController")
+            return
+        }
+        
+        // Safely unwrap the photo URL
+        let photo = viewModel.photos[indexPath.item]
+        guard let url = URL(string: photo.urls.raw) else {
+            print("Error: Invalid photo URL")
+            return
+        }
+        
+        // Ensure photoImage is not nil
+        if vc.image != nil {
+            vc.image.kf.setImage(with: url)
+        } else {
+            print("Error: photoImage is nil")
+        }
+        
+        vc.title = photo.user.name
+        navigationController?.show(vc, sender: nil)
     }
 }

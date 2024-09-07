@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +20,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LJi-2q-Pad">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hgy-KP-sii">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hgy-KP-sii">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="50" height="360"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -53,6 +54,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwF-Pd-Jbm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1335.1145038167938" y="198.59154929577466"/>
+        </scene>
+        <!--Photo Detail Controller-->
+        <scene sceneID="rtI-40-hRq">
+            <objects>
+                <viewController storyboardIdentifier="PhotoDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfy-EP-K8q" customClass="PhotoDetailController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VGp-pD-KUq">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdH-cc-Rzs">
+                                <rect key="frame" x="327.33333333333331" y="698.33333333333337" width="49.666666666666686" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart.circle.fill" catalog="system">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3n-13-J5j">
+                                <rect key="frame" x="327.33333333333331" y="763.66666666666663" width="49.666666666666686" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="arrow.down.circle.fill" catalog="system" symbolScale="large"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkm-RJ-EIx">
+                                <rect key="frame" x="15.999999999999996" y="763.66666666666663" width="49.666666666666657" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-w1-nJi">
+                                <rect key="frame" x="0.0" y="119" width="393" height="639"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="O4i-aN-jYp"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IKM-w1-nJi" firstAttribute="leading" secondItem="O4i-aN-jYp" secondAttribute="leading" id="0yu-8w-YFz"/>
+                            <constraint firstItem="O4i-aN-jYp" firstAttribute="trailing" secondItem="IKM-w1-nJi" secondAttribute="trailing" id="CCb-zt-sGI"/>
+                            <constraint firstItem="O4i-aN-jYp" firstAttribute="bottom" secondItem="Vkm-RJ-EIx" secondAttribute="bottom" constant="20" id="Ehr-xN-jIE"/>
+                            <constraint firstItem="O4i-aN-jYp" firstAttribute="bottom" secondItem="T3n-13-J5j" secondAttribute="bottom" constant="20" id="FL8-ep-tc5"/>
+                            <constraint firstItem="O4i-aN-jYp" firstAttribute="bottom" secondItem="IKM-w1-nJi" secondAttribute="bottom" constant="60" id="Ick-Ag-Lqs"/>
+                            <constraint firstItem="bdH-cc-Rzs" firstAttribute="trailing" secondItem="T3n-13-J5j" secondAttribute="trailing" id="PTK-Tk-v8P"/>
+                            <constraint firstItem="O4i-aN-jYp" firstAttribute="trailing" secondItem="T3n-13-J5j" secondAttribute="trailing" constant="16" id="ffL-Vd-zPk"/>
+                            <constraint firstItem="Vkm-RJ-EIx" firstAttribute="leading" secondItem="O4i-aN-jYp" secondAttribute="leading" constant="16" id="ojH-DA-GVg"/>
+                            <constraint firstItem="IKM-w1-nJi" firstAttribute="top" secondItem="O4i-aN-jYp" secondAttribute="top" constant="60" id="vqi-61-wLF"/>
+                            <constraint firstItem="T3n-13-J5j" firstAttribute="top" secondItem="bdH-cc-Rzs" secondAttribute="bottom" constant="31" id="zoJ-dV-vop"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="IKM-w1-nJi" id="OVp-9P-D2w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zxa-Mr-mrR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-816.03053435114498" y="973.94366197183103"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="I7I-KE-Fot">
@@ -583,19 +641,22 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down.circle.fill" catalog="system" width="128" height="123"/>
         <image name="collections" width="30" height="30"/>
         <image name="gallery" width="30" height="30"/>
+        <image name="heart.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="search" width="30" height="30"/>
         <image name="user" width="30" height="30"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

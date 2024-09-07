@@ -18,7 +18,7 @@ class HomeViewModel {
     let photoManager = PhotoManager()
     
     func getTopics() {
-            topicManager.getTopics(page: page) { data, errorMessage in
+            topicManager.getTopics() { data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {

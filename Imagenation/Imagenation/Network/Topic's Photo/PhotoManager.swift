@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PhotoManagerProtocol {
-    func getPhotos(page: Int,id: String, completion: @escaping(([Photo]?, String?) -> Void))
+    func getPhotos(page: Int, id: String, completion: @escaping(([Photo]?, String?) -> Void))
 }
 
 class PhotoManager: PhotoManagerProtocol {

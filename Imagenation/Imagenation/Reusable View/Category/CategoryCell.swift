@@ -15,5 +15,4 @@ class CategoryCell: UICollectionViewCell {
         super.awakeFromNib()
         topicName.lineBreakMode = .byWordWrapping
     }
-
 }

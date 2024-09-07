@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CategoryHeaderView: UICollectionReusableView {
 
@@ -36,10 +37,11 @@ extension CategoryHeaderView: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(CategoryCell.self)", for: indexPath) as! CategoryCell
-        cell.backgroundColor = .red
         cell.layer.cornerRadius = 8
         let topic = topics[indexPath.item]
         cell.topicName.text = topic.title
+        let url = URL(string: topic.cover_photo.urls.regular)
+        cell.image.kf.setImage(with: url)
         return cell
     }
     

@@ -19,11 +19,19 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fcs-Gg-IjH">
                         <rect key="frame" x="0.0" y="0.0" width="260" height="193"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlU-en-5bQ">
+                        <rect key="frame" x="7.9999999999999982" y="173" width="27.333333333333329" height="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="Fcs-Gg-IjH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3pm-ea-rh8"/>
+                <constraint firstAttribute="bottom" secondItem="OlU-en-5bQ" secondAttribute="bottom" constant="8" id="BEZ-9w-str"/>
+                <constraint firstItem="OlU-en-5bQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dI9-zN-iLG"/>
                 <constraint firstAttribute="trailing" secondItem="Fcs-Gg-IjH" secondAttribute="trailing" id="edd-Gq-D9V"/>
                 <constraint firstAttribute="bottom" secondItem="Fcs-Gg-IjH" secondAttribute="bottom" id="lRT-wt-7qd"/>
                 <constraint firstItem="Fcs-Gg-IjH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lbk-or-6A2"/>
@@ -31,6 +39,7 @@
             <size key="customSize" width="260" height="193"/>
             <connections>
                 <outlet property="image" destination="Fcs-Gg-IjH" id="80R-L3-w5e"/>
+                <outlet property="userName" destination="OlU-en-5bQ" id="K4S-ff-4Ub"/>
             </connections>
             <point key="canvasLocation" x="218.32061068702288" y="70.070422535211264"/>
         </collectionViewCell>
