@@ -13,6 +13,7 @@ class CategoryHeaderView: UICollectionReusableView {
     @IBOutlet weak var collection: UICollectionView!
     
     private var topics: [Topic] = []
+    var callBack: ((Topic) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,5 +48,10 @@ extension CategoryHeaderView: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: 120, height: collectionView.frame.height/2 - 4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let topic = topics[indexPath.item]
+        callBack?(topic)
     }
 }

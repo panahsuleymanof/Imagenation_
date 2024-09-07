@@ -55,6 +55,47 @@
             </objects>
             <point key="canvasLocation" x="-1335.1145038167938" y="198.59154929577466"/>
         </scene>
+        <!--Topic Controller-->
+        <scene sceneID="2bm-Qd-QHF">
+            <objects>
+                <viewController storyboardIdentifier="TopicController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XD4-Pw-WiX" customClass="TopicController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a9m-uQ-wUK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="617-Jg-JT0">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ltF-tn-jZx">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="XD4-Pw-WiX" id="EyN-VT-DVP"/>
+                                    <outlet property="delegate" destination="XD4-Pw-WiX" id="OJj-0I-8dV"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KrD-WX-k7r"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KrD-WX-k7r" firstAttribute="bottom" secondItem="617-Jg-JT0" secondAttribute="bottom" id="0PI-1P-Bpj"/>
+                            <constraint firstItem="617-Jg-JT0" firstAttribute="leading" secondItem="KrD-WX-k7r" secondAttribute="leading" id="7rP-1r-H05"/>
+                            <constraint firstItem="617-Jg-JT0" firstAttribute="top" secondItem="KrD-WX-k7r" secondAttribute="top" id="tbc-he-Nif"/>
+                            <constraint firstItem="KrD-WX-k7r" firstAttribute="trailing" secondItem="617-Jg-JT0" secondAttribute="trailing" id="yGH-oY-h4N"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collection" destination="617-Jg-JT0" id="SWG-dA-Ydd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogu-FA-TI1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1335" y="949"/>
+        </scene>
         <!--Photo Detail Controller-->
         <scene sceneID="rtI-40-hRq">
             <objects>
@@ -105,24 +146,50 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="image" destination="IKM-w1-nJi" id="OVp-9P-D2w"/>
+                        <outlet property="image" destination="IKM-w1-nJi" id="kfg-eT-csM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zxa-Mr-mrR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-816.03053435114498" y="973.94366197183103"/>
+            <point key="canvasLocation" x="-199" y="949"/>
         </scene>
-        <!--View Controller-->
+        <!--Collection Controller-->
         <scene sceneID="I7I-KE-Fot">
             <objects>
-                <viewController id="NbI-ji-rfn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NbI-ji-rfn" customClass="CollectionController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ztb-Hl-D7r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VTY-LK-6Ar">
+                                <rect key="frame" x="20" y="103" width="353" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cOd-e4-1YO">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="NbI-ji-rfn" id="AfR-8t-gTw"/>
+                                    <outlet property="delegate" destination="NbI-ji-rfn" id="UBK-70-G05"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Rlj-Rm-xif"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Rlj-Rm-xif" firstAttribute="trailing" secondItem="VTY-LK-6Ar" secondAttribute="trailing" constant="20" id="4vu-Ts-h6l"/>
+                            <constraint firstItem="VTY-LK-6Ar" firstAttribute="leading" secondItem="Rlj-Rm-xif" secondAttribute="leading" constant="20" id="Q7H-b9-fWS"/>
+                            <constraint firstItem="Rlj-Rm-xif" firstAttribute="bottom" secondItem="VTY-LK-6Ar" secondAttribute="bottom" id="gJe-fX-Uve"/>
+                            <constraint firstItem="VTY-LK-6Ar" firstAttribute="top" secondItem="Rlj-Rm-xif" secondAttribute="top" id="oGm-YK-kYU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GBi-yn-m5m"/>
+                    <connections>
+                        <outlet property="collection" destination="VTY-LK-6Ar" id="bak-C1-1Qh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btA-5Q-FVT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -553,6 +620,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c1H-1Y-80v">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -572,6 +640,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPx-Rk-XcT">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

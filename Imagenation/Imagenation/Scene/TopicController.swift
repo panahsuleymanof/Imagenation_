@@ -1,0 +1,75 @@
+//
+//  TopicController.swift
+//  Imagenation
+//
+//  Created by Panah Suleymanli on 07.09.24.
+//
+
+import UIKit
+import Kingfisher
+
+class TopicController: UIViewController {
+
+    @IBOutlet private weak var collection: UICollectionView!
+    
+    var viewModel = TopicViewModel()
+    var topicId: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCollection()
+        configureViewModel()
+    }
+    
+    func setupCollection() {
+        collection.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
+        collection.backgroundColor = .clear
+    }
+    
+    func configureViewModel() {
+        if let id = topicId {
+            viewModel.getPhotos(topicID: id)
+        }
+        viewModel.error = { errorMessage in
+            print("Error: \(errorMessage)")
+        }
+        viewModel.success = {
+            self.collection.reloadData()
+        }
+    }
+}
+
+extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        let photo = viewModel.photos[indexPath.item]
+        if let url = URL(string: photo.urls.regular) {
+            cell.image.kf.setImage(with: url)
+            cell.userName.text = photo.user.name
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photo = viewModel.photos[indexPath.item]
+        let vc = storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
+        vc.photoURL = photo.urls.raw
+        vc.username = photo.user.name
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.show(vc, sender: nil)
+    }
+}
+
+extension TopicController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: collectionView.frame.width/2 - 10, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        viewModel.pagination(index: indexPath.item, id: topicId ?? "")
+    }
+}

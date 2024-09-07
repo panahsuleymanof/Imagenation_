@@ -31,7 +31,7 @@ class SearchController: UIViewController {
         if let searchTextField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             searchTextField.backgroundColor = UIColor(hex: "29292b")
             searchTextField.attributedPlaceholder = NSAttributedString(
-                string: "Search photos, collections, users",
+                string: "Search photos",
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
             )
             if let glassIconView = searchTextField.leftView as? UIImageView {
@@ -76,6 +76,13 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(CategoryHeaderView.self)", for: indexPath) as! CategoryHeaderView
         header.configure(topics: viewModel.topics)
+        header.callBack = { topic in
+            let vc = self.storyboard?.instantiateViewController(identifier: "\(TopicController.self)") as! TopicController
+            vc.topicId = topic.id
+            vc.title = topic.title
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.show(vc, sender: nil)
+        }
         return header
     }
     
@@ -85,6 +92,15 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         viewModel.pagination(index: indexPath.item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as! PhotoDetailController
+        let photo = viewModel.photos[indexPath.item]
+        vc.photoURL = photo.urls.raw
+        vc.title = photo.user.name
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.show(vc, sender: nil)
     }
 }
 

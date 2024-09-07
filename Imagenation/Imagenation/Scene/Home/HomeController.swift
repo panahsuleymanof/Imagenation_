@@ -55,7 +55,7 @@ class HomeController: UIViewController {
     }
 }
 
-extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.photos.count
     }
@@ -70,11 +70,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
         }
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: 300)
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(TopicHeaderView.self)", for: indexPath) as! TopicHeaderView
         header.configure(topics: viewModel.topics) { [weak self] topic in
@@ -95,27 +91,29 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Safely instantiate the PhotoDetailController
-        guard let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as? PhotoDetailController else {
-            print("Error: Could not instantiate PhotoDetailController")
-            return
-        }
-        
-        // Safely unwrap the photo URL
+        let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as! PhotoDetailController
         let photo = viewModel.photos[indexPath.item]
-        guard let url = URL(string: photo.urls.raw) else {
-            print("Error: Invalid photo URL")
-            return
-        }
-        
-        // Ensure photoImage is not nil
-        if vc.image != nil {
-            vc.image.kf.setImage(with: url)
-        } else {
-            print("Error: photoImage is nil")
-        }
-        
-        vc.title = photo.user.name
+        vc.photoURL = photo.urls.raw
+        vc.username = photo.user.name
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
+    }
+}
+
+extension HomeController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let photo = viewModel.photos[indexPath.item]
+        
+        // Safely unwrap width and height
+        guard let imageWidth = photo.width, let imageHeight = photo.height else {
+            return CGSize(width: collectionView.frame.width, height: 200) // Default size if no data
+        }
+        
+        // Calculate aspect ratio
+        let aspectRatio = CGFloat(imageHeight) / CGFloat(imageWidth)
+        let cellWidth = collectionView.frame.width
+        let cellHeight = cellWidth * aspectRatio
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }

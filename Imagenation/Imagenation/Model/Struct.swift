@@ -11,6 +11,7 @@ struct Photo: Codable {
     let id: String
     let urls: Urls
     let user: User
+    let width, height: Int?
     
     struct User: Codable {
         let name: String
@@ -44,4 +45,8 @@ struct Urls: Codable {
     let small: String
     let regular: String
     let raw: String
+}
+
+struct Collection {
+    
 }

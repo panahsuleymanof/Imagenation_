@@ -53,6 +53,12 @@
 		C199D0422C6E891200E2A22F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0412C6E891200E2A22F /* NetworkManager.swift */; };
 		C199D0442C6E893C00E2A22F /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0432C6E893C00E2A22F /* NetworkConstants.swift */; };
 		C199D0462C6F93C000E2A22F /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199D0452C6F93C000E2A22F /* Struct.swift */; };
+		C1CA99EE2C8C758400132460 /* TopicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA99ED2C8C758400132460 /* TopicController.swift */; };
+		C1CA99F02C8C776900132460 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA99EF2C8C776900132460 /* TopicViewModel.swift */; };
+		C1CA99F42C8C858400132460 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA99F22C8C858300132460 /* CollectionCell.swift */; };
+		C1CA99F52C8C858400132460 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1CA99F32C8C858300132460 /* CollectionCell.xib */; };
+		C1CA99F82C8C8C6700132460 /* CollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA99F72C8C8C6700132460 /* CollectionController.swift */; };
+		C1CA99FA2C8C8C7300132460 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA99F92C8C8C7300132460 /* CollectionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +103,12 @@
 		C199D0412C6E891200E2A22F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C199D0432C6E893C00E2A22F /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		C199D0452C6F93C000E2A22F /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
+		C1CA99ED2C8C758400132460 /* TopicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicController.swift; sourceTree = "<group>"; };
+		C1CA99EF2C8C776900132460 /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
+		C1CA99F22C8C858300132460 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		C1CA99F32C8C858300132460 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		C1CA99F72C8C8C6700132460 /* CollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionController.swift; sourceTree = "<group>"; };
+		C1CA99F92C8C8C7300132460 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +176,7 @@
 		C12146FD2C77D10100E095BA /* Reusable View */ = {
 			isa = PBXGroup;
 			children = (
+				C1CA99F12C8C855900132460 /* Collections */,
 				C11B9BE02C88698400E190D4 /* SearchHeader */,
 				C121470D2C78BCC300E095BA /* HomeHeader */,
 				C12147072C78BBEA00E095BA /* Topic */,
@@ -256,12 +269,15 @@
 		C199CFBB2C5A5EF900E2A22F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C1CA99F62C8C8C4A00132460 /* Collection */,
 				C11B9BEA2C88AF1F00E190D4 /* Profile */,
 				C199CFFC2C66601400E2A22F /* Login */,
 				C199D0012C66661600E2A22F /* Register */,
 				C199D0312C6CBC2700E2A22F /* Home */,
 				C11B9BCB2C8845F500E190D4 /* Search */,
 				C11B9BF42C8C470E00E190D4 /* PhotoDetailController.swift */,
+				C1CA99ED2C8C758400132460 /* TopicController.swift */,
+				C1CA99EF2C8C776900132460 /* TopicViewModel.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -330,6 +346,24 @@
 				C199D0432C6E893C00E2A22F /* NetworkConstants.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		C1CA99F12C8C855900132460 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				C1CA99F22C8C858300132460 /* CollectionCell.swift */,
+				C1CA99F32C8C858300132460 /* CollectionCell.xib */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
+		C1CA99F62C8C8C4A00132460 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				C1CA99F72C8C8C6700132460 /* CollectionController.swift */,
+				C1CA99F92C8C8C7300132460 /* CollectionViewModel.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +443,7 @@
 				C199CFB42C54E40000E2A22F /* Base in Resources */,
 				C121470B2C78BC1200E095BA /* TopicHeaderView.xib in Resources */,
 				C199CFAF2C54E3FF00E2A22F /* Base in Resources */,
+				C1CA99F52C8C858400132460 /* CollectionCell.xib in Resources */,
 				C12147112C78BCE400E095BA /* TopicCell.xib in Resources */,
 				C11B9BE62C8869A400E190D4 /* CategoryHeaderView.xib in Resources */,
 				C11B9BDD2C88624400E190D4 /* CategoryCell.xib in Resources */,
@@ -432,6 +467,7 @@
 				C199CFFB2C665FC900E2A22F /* Coordinator.swift in Sources */,
 				C11B9BF52C8C470E00E190D4 /* PhotoDetailController.swift in Sources */,
 				C11B9BEC2C88AF3200E190D4 /* ProfileController.swift in Sources */,
+				C1CA99FA2C8C8C7300132460 /* CollectionViewModel.swift in Sources */,
 				C121470A2C78BC1200E095BA /* TopicHeaderView.swift in Sources */,
 				C11B9BEF2C8B2C1300E190D4 /* DiscoverManager.swift in Sources */,
 				C12147102C78BCE400E095BA /* TopicCell.swift in Sources */,
@@ -442,12 +478,16 @@
 				C199D0382C6CD14C00E2A22F /* HomeViewModel.swift in Sources */,
 				C199CFAA2C54E3FF00E2A22F /* SceneDelegate.swift in Sources */,
 				C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */,
+				C1CA99EE2C8C758400132460 /* TopicController.swift in Sources */,
+				C1CA99F42C8C858400132460 /* CollectionCell.swift in Sources */,
+				C1CA99F82C8C8C6700132460 /* CollectionController.swift in Sources */,
 				C199D0462C6F93C000E2A22F /* Struct.swift in Sources */,
 				C139919A2C7A3A5E00DF0936 /* TopicEndpoint.swift in Sources */,
 				C11B9BCD2C88462700E190D4 /* SearchController.swift in Sources */,
 				C139919C2C7A3A7400DF0936 /* TopicManager.swift in Sources */,
 				C11B9BCF2C88463A00E190D4 /* SearchViewModel.swift in Sources */,
 				C12147052C78B62200E095BA /* ImageCell.swift in Sources */,
+				C1CA99F02C8C776900132460 /* TopicViewModel.swift in Sources */,
 				C13991A12C7CA34000DF0936 /* PhotoEndpoint.swift in Sources */,
 				C199D0302C6CBBF600E2A22F /* RegisterViewModel.swift in Sources */,
 				C11B9BDC2C88624400E190D4 /* CategoryCell.swift in Sources */,
