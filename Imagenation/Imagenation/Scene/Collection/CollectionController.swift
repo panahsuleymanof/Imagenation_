@@ -17,6 +17,7 @@ class CollectionController: UIViewController {
         super.viewDidLoad()
         setSearchField()
         setCollection()
+        configureViewModel()
     }
     
     func setSearchField() {
@@ -43,21 +44,39 @@ class CollectionController: UIViewController {
         collection.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collection.backgroundColor = .clear
     }
+    
+    func configureViewModel() {
+        viewModel.getCollections()
+        viewModel.error = { errorMessage in
+            print(errorMessage)
+        }
+        viewModel.success = {
+            self.collection.reloadData()
+        }
+    }
 }
 
 extension CollectionController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        viewModel.collections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
         cell.layer.cornerRadius = 8
+        let collection = viewModel.collections[indexPath.item]
+        cell.collectionName.text = collection.title
+        cell.collectionDetail.text = "\(collection.total_photos ?? 0) photos • Curated by \(collection.user?.name ?? "")"
+        cell.configure(with: collection) // Use the new configure method
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        viewModel.pagination(index: indexPath.item)
     }
 }
 

@@ -12,10 +12,6 @@ struct Photo: Codable {
     let urls: Urls
     let user: User
     let width, height: Int?
-    
-    struct User: Codable {
-        let name: String
-    }
 }
 
 struct Topic: Codable {
@@ -47,6 +43,18 @@ struct Urls: Codable {
     let raw: String
 }
 
-struct Collection {
-    
+struct Collection: Codable {
+    let id, title: String?
+    let total_photos: Int?
+    let user: User?
+    let preview_photos: [PreviewPhoto]?
+}
+
+struct User: Codable {
+    let name: String
+}
+
+struct PreviewPhoto: Codable {
+    let id, slug: String?
+    let urls: Urls?
 }
