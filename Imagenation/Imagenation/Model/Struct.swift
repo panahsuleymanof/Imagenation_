@@ -8,10 +8,19 @@
 import Foundation
 
 struct Photo: Codable {
-    let id: String
+    let id, slug: String
     let urls: Urls
     let user: User
     let width, height: Int?
+    let altDescription: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, slug
+        case urls
+        case user
+        case width, height
+        case altDescription = "alt_description"
+    }
 }
 
 struct User: Codable {
@@ -28,10 +37,16 @@ struct Urls: Codable {
 struct Topic: Codable {
     let id: String
     let title: String
-    let cover_photo: CoverInformation
+    let coverPhoto: CoverInformation
     
     struct CoverInformation: Codable {
         let urls: Urls
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case coverPhoto = "cover_photo"
     }
 }
 
@@ -50,9 +65,16 @@ struct SearchResult: Codable {
 
 struct Collection: Codable {
     let id, title: String?
-    let total_photos: Int?
+    let totalPhotos: Int?
     let user: User?
-    let preview_photos: [PreviewPhoto]?
+    let previewPhotos: [PreviewPhoto]?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case totalPhotos = "total_photos"
+        case user
+        case previewPhotos = "preview_photos"
+    }
 }
 
 struct PreviewPhoto: Codable {

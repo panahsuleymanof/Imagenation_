@@ -110,7 +110,9 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
         let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as! PhotoDetailController
         let photo = viewModel.photos[indexPath.item]
         vc.photoURL = photo.urls.raw
-        vc.title = photo.user.name
+        vc.username = photo.user.name
+        vc.photoId = photo.id
+        vc.altDescription = photo.altDescription
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
     }

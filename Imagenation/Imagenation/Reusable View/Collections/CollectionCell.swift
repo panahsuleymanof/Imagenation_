@@ -60,7 +60,7 @@ class CollectionCell: UICollectionViewCell {
     
     func configure(with collection: Collection) {
         self.photos.removeAll()
-        self.photos.append(contentsOf: collection.preview_photos ?? [])
+        self.photos.append(contentsOf: collection.previewPhotos ?? [])
         self.collection.reloadData()
     }
 }

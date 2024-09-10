@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 extension UIColor {
     convenience init(hex: String) {
@@ -109,3 +110,4 @@ extension HomeController {
         )
     }
 }
+

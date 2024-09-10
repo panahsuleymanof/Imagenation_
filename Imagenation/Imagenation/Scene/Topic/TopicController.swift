@@ -69,6 +69,8 @@ extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate 
         let vc = storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
         vc.photoURL = photo.urls.raw
         vc.username = photo.user.name
+        vc.photoId = photo.id
+        vc.altDescription = photo.altDescription
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
     }

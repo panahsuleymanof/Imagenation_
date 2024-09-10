@@ -67,7 +67,7 @@ extension CollectionController: UICollectionViewDataSource, UICollectionViewDele
         let collection = viewModel.collections[indexPath.item]
         cell.author = collection.user?.name
         cell.name = collection.title
-        cell.photoCount = collection.total_photos
+        cell.photoCount = collection.totalPhotos
         cell.configure(with: collection)
         return cell
     }

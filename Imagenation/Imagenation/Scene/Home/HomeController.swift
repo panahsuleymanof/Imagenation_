@@ -52,6 +52,9 @@ class HomeController: UIViewController {
             print("Error: \(errorMessage)")
         }
         viewModel.success = {
+            if let firstTopic = self.viewModel.topics.first {
+                self.selectedTopic = firstTopic
+            }
             self.collection.reloadData()
         }
     }
@@ -83,12 +86,12 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             viewModel.page = 1
             selectedTopic = topic
             viewModel.getPhotos(topicID: topic.id, isFromTopic: true)
-//            collectionView.setContentOffset(.zero, animated: true)
         }
         return header
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("Displaying cell at index \(indexPath.item)")
         viewModel.pagination(index: indexPath.item, id: selectedTopic?.id ?? "")
     }
     
@@ -98,6 +101,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
         vc.photoURL = photo.urls.raw
         vc.username = photo.user.name
         vc.photoId = photo.id
+        vc.altDescription = photo.altDescription
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
     }
@@ -106,23 +110,16 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
 extension HomeController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Get the photo from the ViewModel
         let photo = viewModel.photos[indexPath.item]
         
-        // Ensure image width and height are available
         guard let imageWidth = photo.width, let imageHeight = photo.height else {
-            // Provide a default size if dimensions are not available
             return CGSize(width: collectionView.frame.width, height: 300)
         }
         
-        // Calculate the aspect ratio
         let aspectRatio = CGFloat(imageHeight) / CGFloat(imageWidth)
-        
-        // Use the width of the collection view and adjust the height based on aspect ratio
         let cellWidth = collectionView.frame.width
         let cellHeight = cellWidth * aspectRatio
         
-        // Return the calculated size for the cell
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }

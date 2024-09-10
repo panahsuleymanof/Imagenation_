@@ -41,7 +41,7 @@ extension CategoryHeaderView: UICollectionViewDataSource, UICollectionViewDelega
         cell.layer.cornerRadius = 8
         let topic = topics[indexPath.item]
         cell.topicName.text = topic.title
-        let url = URL(string: topic.cover_photo.urls.regular)
+        let url = URL(string: topic.coverPhoto.urls.regular)
         cell.image.kf.setImage(with: url)
         return cell
     }
