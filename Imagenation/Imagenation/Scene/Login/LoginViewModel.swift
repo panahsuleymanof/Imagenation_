@@ -28,6 +28,7 @@ class LoginViewModel {
             case .success(let users):
                 if let user = users.first(where: {$0.email == email}) {
                     UserDefaults.standard.set("\(user.firstName) \(user.lastName)", forKey: "fullName")
+                    UserDefaults.standard.set(email, forKey: "email")
                     UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     self?.loginSuccess?()
                 } else {

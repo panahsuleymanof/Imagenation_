@@ -17,6 +17,7 @@ class PhotoDetailController: UIViewController {
     var photoId: String?
     var photoURL: String?
     var username: String?
+    var userEmail = UserDefaults.standard.string(forKey: "email")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,19 +27,28 @@ class PhotoDetailController: UIViewController {
         if let author = username {
             title = author
         }
+        
+        if let photoId = photoId {
+            viewModel.isPhotoLiked(forUserEmail: userEmail ?? "", photoId: photoId) { isLiked in
+                DispatchQueue.main.async {
+                    self.updateLikeButton(isLiked: isLiked)
+                }
+            }
+        }
     }
     
     @IBAction func likeButtonTapped(_ sender: Any) {
-//        let unsplashService = UnsplashService()
-//        print(photoId ?? "")
-//        unsplashService.likePhoto(photoID: photoId ?? "") { result in
-//            switch result {
-//            case .success(let photo):
-//                self.likeButton.backgroundColor = .red
-//                print("Photo liked successfully: \(photo.urls.regular), liked by user: \(photo.user.name)")
-//            case .failure(let error):
-//                print("Failed to like photo: \(error)")
-//            }
-//        }
+        guard let photoId = photoId else { return }
+        
+        // Toggle like/dislike
+        viewModel.toggleLikeStatus(forUserEmail: userEmail ?? "", photoId: photoId) { [weak self] isLiked in
+            DispatchQueue.main.async {
+                self?.updateLikeButton(isLiked: isLiked)
+            }
+        }
+    }
+    
+    private func updateLikeButton(isLiked: Bool) {
+        likeButton.configuration?.baseForegroundColor = isLiked ? .red : .white
     }
 }

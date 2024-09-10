@@ -62,4 +62,45 @@ class FirebaseManager {
             }
         }
     }
+    
+    func likePhoto(forUserEmail email: String, photoId: String, completion: @escaping (Result<Void, Error>) -> Void ) {
+        let userDocument = FirebaseManager.shared.database.collection("Users").document(email)
+        
+        userDocument.updateData([
+            "likedPhotos": FieldValue.arrayUnion([photoId])
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func dislikePhoto(forUserEmail email: String, photoId: String, completion: @escaping (Result<Void, Error>) -> Void ) {
+        let userDocument = FirebaseManager.shared.database.collection("Users").document(email)
+        
+        userDocument.updateData([
+            "likedPhotos": FieldValue.arrayRemove([photoId])
+        ]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func isPhotoLiked(forUserEmail email: String, photoId: String, completion: @escaping (Bool) -> Void) {
+        let userDocument = FirebaseManager.shared.database.collection("Users").document(email)
+        
+        userDocument.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let likedPhotos = document.get("likedPhotos") as? [String] ?? []
+                completion(likedPhotos.contains(photoId))
+            } else {
+                completion(false)
+            }
+        }
+    }
 }
