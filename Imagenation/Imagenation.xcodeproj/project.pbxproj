@@ -64,6 +64,8 @@
 		C1CA9A012C8CB32200132460 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA9A002C8CB32200132460 /* PhotoDetailViewModel.swift */; };
 		C1CA9A042C8CDA6B00132460 /* CHTCollectionViewWaterfallLayout in Frameworks */ = {isa = PBXBuildFile; productRef = C1CA9A032C8CDA6B00132460 /* CHTCollectionViewWaterfallLayout */; };
 		C1CA9A062C8CDA6B00132460 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */ = {isa = PBXBuildFile; productRef = C1CA9A052C8CDA6B00132460 /* CHTCollectionViewWaterfallLayoutObjC */; };
+		C1CA9A082C8D75C500132460 /* CollectionPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA9A072C8D75C500132460 /* CollectionPhotosController.swift */; };
+		C1CA9A0A2C8D78D400132460 /* CollectionPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CA9A092C8D78D400132460 /* CollectionPhotoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		C1CA99FC2C8C954D00132460 /* CollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionManager.swift; sourceTree = "<group>"; };
 		C1CA99FE2C8C955D00132460 /* CollectionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEndpoint.swift; sourceTree = "<group>"; };
 		C1CA9A002C8CB32200132460 /* PhotoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewModel.swift; sourceTree = "<group>"; };
+		C1CA9A072C8D75C500132460 /* CollectionPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPhotosController.swift; sourceTree = "<group>"; };
+		C1CA9A092C8D78D400132460 /* CollectionPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPhotoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +293,8 @@
 				C1CA9A002C8CB32200132460 /* PhotoDetailViewModel.swift */,
 				C1CA99ED2C8C758400132460 /* TopicController.swift */,
 				C1CA99EF2C8C776900132460 /* TopicViewModel.swift */,
+				C1CA9A072C8D75C500132460 /* CollectionPhotosController.swift */,
+				C1CA9A092C8D78D400132460 /* CollectionPhotoViewModel.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				C1CA9A012C8CB32200132460 /* PhotoDetailViewModel.swift in Sources */,
 				C11B9BEC2C88AF3200E190D4 /* ProfileController.swift in Sources */,
 				C1CA99FD2C8C954D00132460 /* CollectionManager.swift in Sources */,
+				C1CA9A0A2C8D78D400132460 /* CollectionPhotoViewModel.swift in Sources */,
 				C1CA99FA2C8C8C7300132460 /* CollectionViewModel.swift in Sources */,
 				C121470A2C78BC1200E095BA /* TopicHeaderView.swift in Sources */,
 				C1CA99FF2C8C955D00132460 /* CollectionEndpoint.swift in Sources */,
@@ -506,6 +513,7 @@
 				C199CFAA2C54E3FF00E2A22F /* SceneDelegate.swift in Sources */,
 				C199D0002C6660A900E2A22F /* LoginCoordinator.swift in Sources */,
 				C1CA99EE2C8C758400132460 /* TopicController.swift in Sources */,
+				C1CA9A082C8D75C500132460 /* CollectionPhotosController.swift in Sources */,
 				C1CA99F42C8C858400132460 /* CollectionCell.swift in Sources */,
 				C1CA99F82C8C8C6700132460 /* CollectionController.swift in Sources */,
 				C199D0462C6F93C000E2A22F /* Struct.swift in Sources */,
@@ -672,7 +680,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = V75NJ48GWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Imagenation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -703,7 +711,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = V75NJ48GWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Imagenation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

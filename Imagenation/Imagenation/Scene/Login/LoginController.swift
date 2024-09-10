@@ -6,47 +6,67 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseFirestoreInternal
-
-class UserDetails {
-    static let shared = UserDetails()
-    
-    var name = ""
-    var surname = ""
-    var username = ""
-    var email = ""
-}
 
 class LoginController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var emailFieldView: UIView!
-    @IBOutlet weak var pswdField: UITextField!
-    @IBOutlet weak var pswdFieldView: UIView!
+    @IBOutlet private weak var emailField: UITextField!
+    @IBOutlet private weak var emailFieldView: UIView!
+    @IBOutlet private weak var pswdField: UITextField!
+    @IBOutlet private weak var pswdFieldView: UIView!
     
     let viewModel = LoginViewModel()
-    let database = Firestore.firestore()
-    var users = [UserInfo]()
-    let userDefaults = UserDefaults.standard
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailField.delegate = self
-        pswdField.delegate = self
-        configureTitle()
+        configureUI()
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setChangableColor(textfield: emailField, view: emailFieldView, color: .lightGray)
         setChangableColor(textfield: pswdField, view: pswdFieldView, color: .lightGray)
     }
     
-    func configureTitle() {
-        self.title = "Login"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    private func configureUI() {
+        title = "Login"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        emailField.delegate = self
+        pswdField.delegate = self
     }
     
+    private func setupBindings() {
+        viewModel.loginSuccess = { [weak self] in
+            DispatchQueue.main.async {
+                self?.navigateToHome()
+            }
+        }
+        
+        viewModel.loginFailed = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.showError(message: errorMessage)
+            }
+        }
+    }
+    
+    @IBAction func logInTapped(_ sender: Any) {
+        guard let email = emailField.text, let password = pswdField.text else {
+            return
+        }
+        viewModel.loginUser(email: email, password: password)
+    }
+    
+    @IBAction func joinTapped(_ sender: Any) {
+        let registerVC = storyboard?.instantiateViewController(withIdentifier: "\(RegisterController.self)") as! RegisterController
+        registerVC.logInCallBack = { [weak self] email, password in
+            self?.emailField.text = email
+            self?.pswdField.text = password
+        }
+        navigationController?.show(registerVC, sender: nil)
+    }
+    
+    // MARK: - TextField Delegate Methods
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateColor(textField: textField, color: .white)
     }
@@ -55,80 +75,36 @@ class LoginController: UIViewController, UITextFieldDelegate {
         updateColor(textField: textField, color: .lightGray)
     }
     
-    func updateColor(textField: UITextField, color: UIColor) {
+    // MARK: - Helper Methods
+    private func updateColor(textField: UITextField, color: UIColor) {
         if textField == emailField {
-            setChangableColor(textfield: textField, view: emailFieldView, color: color)
-        } else {
-            setChangableColor(textfield: textField, view: pswdFieldView, color: color)
+            setChangableColor(textfield: emailField, view: emailFieldView, color: color)
+        } else if textField == pswdField {
+            setChangableColor(textfield: pswdField, view: pswdFieldView, color: color)
         }
     }
-        
-    func setChangableColor(textfield: UITextField, view: UIView,color: UIColor) {
+    
+    private func setChangableColor(textfield: UITextField, view: UIView, color: UIColor) {
         if let placeholder = textfield.placeholder {
             textfield.attributedPlaceholder = NSAttributedString(
                 string: placeholder,
-                attributes: [NSAttributedString.Key.foregroundColor: color])
+                attributes: [NSAttributedString.Key.foregroundColor: color]
+            )
             view.backgroundColor = color
         }
     }
     
-    func getUsers(completion: @escaping ([UserInfo]) -> Void) {
-        var allUsers = [UserInfo]()
-        database.collection("Users").getDocuments { snapshot, error in
-            if let error {
-                print(error.localizedDescription)
-            } else if let snapshot {
-                for document in snapshot.documents {
-                    let dict = document.data()
-                    if let jsonData = try? JSONSerialization.data(withJSONObject: dict) {
-                        do {
-                            let user = try JSONDecoder().decode(UserInfo.self, from: jsonData)
-                            allUsers.append(user)
-                        } catch {
-                            print("error: \(error.localizedDescription)")
-                        }
-                    }
-                }
-                completion(allUsers)
-            }
+    private func navigateToHome() {
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sceneDelegate: SceneDelegate = scene?.delegate as? SceneDelegate {
+            sceneDelegate.setHomeAsRoot()
         }
     }
     
-    @IBAction func logInTapped(_ sender: Any) {
-        if let email = emailField.text,
-           let password = pswdField.text {
-            Auth.auth().signIn(withEmail: email, password: password) { authResult,error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.getUsers { users in
-                        if let userIndex = users.firstIndex(where: {$0.email == email}) {
-                            UserDetails.shared.email = email
-                            UserDetails.shared.name = users[userIndex].firstName
-                            UserDetails.shared.surname = users[userIndex].lastName
-                            UserDetails.shared.username = users[userIndex].username
-                            self.userDefaults.set("\(users[userIndex].firstName) \(users[userIndex].lastName)", forKey: "fullName")
-                            self.userDefaults.set(true, forKey: "isLoggedIn")
-                            let scene = UIApplication.shared.connectedScenes.first
-                            if let sceneDelegate: SceneDelegate = scene?.delegate as? SceneDelegate {
-                                sceneDelegate.setHomeAsRoot()
-                        }
-                    }
-                    }
-                }
-            }
-        }
-    }
-    
-    @IBAction func joinTapped(_ sender: Any) {
-//        let coordinator = LoginCoordinator(navigationController: self.navigationController ?? UINavigationController())
-//        coordinator.start()
-        let vc = storyboard?.instantiateViewController(identifier: "\(RegisterController.self)") as! RegisterController
-        vc.logInCallBack = { [weak self] email, password in
-            self?.emailField.text = email
-            self?.pswdField.text = password
-        }
-        navigationController?.show(vc, sender: nil)
+    private func showError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 

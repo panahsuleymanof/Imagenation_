@@ -10,3 +10,15 @@ import Foundation
 enum CollectionEndpoint: String {
     case collections = "/collections"
 }
+
+enum CollectionPhotoEndpoint {
+    case photo(id: String)
+    
+    var path: String {
+        switch self {
+        case .photo(let id):
+            return "collections/\(id)/photos"
+        }
+    }
+
+}

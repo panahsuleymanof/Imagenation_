@@ -8,6 +8,6 @@
 import Foundation
 
 enum DiscoverEndpoint: String {
-    case photos = "/photos"        // Endpoint for fetching default photos
-    case search = "/search/photos" // Endpoint for searching photos by query
+    case photos = "/photos"
+    case searchPhotos = "/search/photos"
 }

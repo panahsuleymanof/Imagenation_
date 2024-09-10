@@ -10,7 +10,7 @@ import Alamofire
 import Kingfisher
 
 class HomeController: UIViewController {
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = HomeViewModel()
     var selectedTopic: Topic?
@@ -33,6 +33,8 @@ class HomeController: UIViewController {
     func configureNavigationBar() {
         guard let navigationController = navigationController else { return }
 
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
         // Make the navigation bar transparent
         navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController.navigationBar.shadowImage = UIImage()

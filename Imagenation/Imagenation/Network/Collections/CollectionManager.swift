@@ -14,4 +14,13 @@ class CollectionManager {
         let endpoint = CollectionEndpoint.collections.rawValue
         NetworkManager.request(model: [Collection].self, endpoint: endpoint, parameters: parameters ,completion: completion)
     }
+    
+    func getPhotos(page: Int, id: String, completion: @escaping (([Photo]?, String?) -> Void)) {
+        let parameters: [String: Int] = ["page": page,
+                                         "per_page": 20]
+        NetworkManager.request(model: [Photo].self,
+                               endpoint: CollectionPhotoEndpoint.photo(id: id).path,
+                               parameters: parameters,
+                               completion: completion)
+    }
 }

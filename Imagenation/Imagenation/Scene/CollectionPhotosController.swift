@@ -1,28 +1,24 @@
 //
-//  TopicController.swift
+//  CollectionPhotosController.swift
 //  Imagenation
 //
-//  Created by Panah Suleymanli on 07.09.24.
+//  Created by Panah Suleymanli on 08.09.24.
 //
 
 import UIKit
-import Kingfisher
 
-class TopicController: UIViewController {
-
+class CollectionPhotosController: UIViewController {
+    @IBOutlet weak var author: UILabel!
     @IBOutlet private weak var collection: UICollectionView!
     
-    var viewModel = TopicViewModel()
-    var topicId: String?
-    
+    let viewModel = CollectionPhotoViewModel()
+    var collectionId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
         configureViewModel()
-        
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backButton
     }
+
     
     func setupCollection() {
         let layout = UICollectionViewFlowLayout()
@@ -37,8 +33,8 @@ class TopicController: UIViewController {
     }
     
     func configureViewModel() {
-        if let id = topicId {
-            viewModel.getPhotos(topicID: id)
+        if let id = collectionId {
+            viewModel.getPhotos(collectionId: id)
         }
         viewModel.error = { errorMessage in
             print("Error: \(errorMessage)")
@@ -49,7 +45,7 @@ class TopicController: UIViewController {
     }
 }
 
-extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CollectionPhotosController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.photos.count
     }
@@ -72,15 +68,16 @@ extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate 
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
     }
+    
 }
 
-extension TopicController: UICollectionViewDelegateFlowLayout {
+extension CollectionPhotosController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2
         return CGSize(width: width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        viewModel.pagination(index: indexPath.item, id: topicId ?? "")
+        viewModel.pagination(index: indexPath.item, id: collectionId ?? "")
     }
 }

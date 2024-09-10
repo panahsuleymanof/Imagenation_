@@ -13,7 +13,8 @@ protocol PhotoManagerProtocol {
 
 class PhotoManager: PhotoManagerProtocol {
     func getPhotos(page: Int, id: String, completion: @escaping (([Photo]?, String?) -> Void)) {
-        let parameters: [String: Int] = ["page": page]
+        let parameters: [String: Int] = ["page": page,
+                                         "per_page": 20]
         NetworkManager.request(model: [Photo].self,
                                endpoint: PhotoEndpoint.photo(id: id).path,
                                parameters: parameters,

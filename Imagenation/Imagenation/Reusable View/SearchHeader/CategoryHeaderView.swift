@@ -10,7 +10,7 @@ import Kingfisher
 
 class CategoryHeaderView: UICollectionReusableView {
 
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     
     private var topics: [Topic] = []
     var callBack: ((Topic) -> Void)?

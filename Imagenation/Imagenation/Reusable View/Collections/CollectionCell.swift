@@ -8,21 +8,38 @@
 import UIKit
 import Kingfisher
 
+import UIKit
+import Kingfisher
+
 class CollectionCell: UICollectionViewCell {
 
     @IBOutlet private weak var collection: UICollectionView!
-    @IBOutlet weak var collectionName: UILabel!
-    @IBOutlet weak var collectionDetail: UILabel!
+    @IBOutlet private weak var collectionName: UILabel!
+    @IBOutlet private weak var collectionDetail: UILabel!
     
     var photos = [PreviewPhoto]()
-    var name: String?
-    var photoCount: Int?
-    var author: String?
+    
+    private var collections: [Collection] = []
+    
+    var name: String? {
+        didSet {
+            setLabels()
+        }
+    }
+    var photoCount: Int? {
+        didSet {
+            setLabels()
+        }
+    }
+    var author: String? {
+        didSet {
+            setLabels()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setCollectionView()
-//        setLabels()
     }
 
     func setCollectionView() {
@@ -42,23 +59,22 @@ class CollectionCell: UICollectionViewCell {
     }
     
     func configure(with collection: Collection) {
-        self.photos.removeAll() // Clear the photos array
+        self.photos.removeAll()
         self.photos.append(contentsOf: collection.preview_photos ?? [])
-        self.collection.reloadData() // Reload the collection view after updating the photos
+        self.collection.reloadData()
     }
 }
 
 extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         let photo = photos[indexPath.item]
         let url = URL(string: photo.urls?.regular ?? "")
-        cell.image.kf.cancelDownloadTask() // Cancel any ongoing image downloads for reused cells
-        cell.image.kf.setImage(with: url) // Load the new image
+        cell.image.kf.setImage(with: url)
         return cell
     }
 }

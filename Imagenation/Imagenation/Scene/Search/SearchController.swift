@@ -9,10 +9,12 @@ import UIKit
 import Kingfisher
 
 class SearchController: UIViewController {
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     let viewModel = SearchViewModel()
     
     let searchController = UISearchController()
+    var searchWorkItem: DispatchWorkItem? // For debouncing
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setSearchField()
@@ -23,9 +25,9 @@ class SearchController: UIViewController {
     
     func setSearchField() {
         navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self // Set delegate for UISearchResultsUpdating
+        searchController.searchResultsUpdater = self 
         searchController.obscuresBackgroundDuringPresentation = false
-        //searchController.searchBar.delegate = self // Optional: for handling cancel button
+//        searchController.searchBar.delegate = self // Handling cancel button
         definesPresentationContext = true
         searchController.searchBar.tintColor = .white
         if let searchTextField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
@@ -47,6 +49,9 @@ class SearchController: UIViewController {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .vertical
+        
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
         
         collection.register(UINib(nibName: "CategoryHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoryHeaderView")
         collection.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
@@ -113,14 +118,6 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
 
 extension SearchController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        // Get the search bar text
-        guard let searchText = searchController.searchBar.text else { return }
-        let lowercasedQuery = searchText.lowercased()
         
-        if !lowercasedQuery.isEmpty {
-            viewModel.searchPhotos(query: lowercasedQuery)
-        } else {
-            viewModel.resetSearch()
-        }
     }
 }

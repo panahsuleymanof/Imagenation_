@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionController: UIViewController {
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = CollectionViewModel()
     let searchController = UISearchController()
@@ -65,9 +65,10 @@ extension CollectionController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
         cell.layer.cornerRadius = 8
         let collection = viewModel.collections[indexPath.item]
-        cell.collectionName.text = collection.title
-        cell.collectionDetail.text = "\(collection.total_photos ?? 0) photos • Curated by \(collection.user?.name ?? "")"
-        cell.configure(with: collection) // Use the new configure method
+        cell.author = collection.user?.name
+        cell.name = collection.title
+        cell.photoCount = collection.total_photos
+        cell.configure(with: collection)
         return cell
     }
     
@@ -78,6 +79,15 @@ extension CollectionController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         viewModel.pagination(index: indexPath.item)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let collection = viewModel.collections[indexPath.item]
+//        let vc = storyboard?.instantiateViewController(identifier: "\(CollectionPhotosController.self)") as! CollectionPhotosController
+//        vc.collectionId = collection.id
+//        vc.title = collection.title
+//        vc.hidesBottomBarWhenPushed = true
+//        navigationController?.show(vc, sender: nil)
+//    }
 }
 
 extension CollectionController: UISearchResultsUpdating {

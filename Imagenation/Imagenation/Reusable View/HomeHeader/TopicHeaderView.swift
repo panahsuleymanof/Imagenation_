@@ -8,7 +8,7 @@
 import UIKit
 
 class TopicHeaderView: UICollectionReusableView {
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet private weak var collection: UICollectionView!
     
     private var selectedIndex: IndexPath?
     private var topics: [Topic] = []
