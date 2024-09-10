@@ -52,8 +52,11 @@ class HomeController: UIViewController {
             print("Error: \(errorMessage)")
         }
         viewModel.success = {
-            if let firstTopic = self.viewModel.topics.first {
-                self.selectedTopic = firstTopic
+            if self.viewModel.isTopicsFetched {
+                if let firstTopic = self.viewModel.topics.first {
+                    self.selectedTopic = firstTopic
+                    self.viewModel.isTopicsFetched = false
+                }
             }
             self.collection.reloadData()
         }

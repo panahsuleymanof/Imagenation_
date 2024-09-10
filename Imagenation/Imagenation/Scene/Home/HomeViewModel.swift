@@ -11,6 +11,7 @@ class HomeViewModel {
     var topics = [Topic]()
     var photos = [Photo]()
     var page = 1
+    var isTopicsFetched = false
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
@@ -18,15 +19,18 @@ class HomeViewModel {
     let photoManager = PhotoManager()
     
     func getTopics() {
-            topicManager.getTopics() { data, errorMessage in
-                if let errorMessage {
-                    self.error?(errorMessage)
-                } else if let data {
-                    self.topics.append(contentsOf: data)
-                    self.success?()
-                    self.getPhotos(topicID: data.first?.id ?? "")
+        topicManager.getTopics() { data, errorMessage in
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                self.topics.append(contentsOf: data)
+                self.isTopicsFetched = true
+                if let firstTopicID = data.first?.id {
+                    self.getPhotos(topicID: firstTopicID, isFromTopic: true)
                 }
+                self.success?()
             }
+        }
     }
     
     func getPhotos(topicID: String, isFromTopic: Bool = false) {
@@ -47,7 +51,7 @@ class HomeViewModel {
         print("index: \(index) and count: \(photos.count) and page: \(page)")
         if index == photos.count - 1 && page <= 1500 {
             page += 1
-            getPhotos(topicID: id)
+            getPhotos(topicID: id, isFromTopic: false)
         }
     }
 }
