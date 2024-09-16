@@ -8,17 +8,55 @@
 import UIKit
 
 class CollectionPhotosController: UIViewController {
-    @IBOutlet weak var author: UILabel!
+    @IBOutlet weak var authorName: UILabel!
     @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = CollectionPhotoViewModel()
     var collectionId: String?
+    private var author: String?
+    
+    let emptyImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "empty")
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(emptyImageView)
+        setImageConstraints()
         setupCollection()
         configureViewModel()
+        configureNavigationBar()
+        
+        if let name = author {
+            authorName.text = "Curated by \(name)"
+        }
     }
 
+    func setImageConstraints() {
+        emptyImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyImageView.widthAnchor.constraint(equalToConstant: 400),
+            emptyImageView.heightAnchor.constraint(equalToConstant: 400)
+        ])
+    }
+    
+    func configureNavigationBar() {
+        guard let navigationController = navigationController else { return }
+
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        // Make the navigation bar transparent
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.backgroundColor = .clear
+    }
     
     func setupCollection() {
         let layout = UICollectionViewFlowLayout()
@@ -32,14 +70,30 @@ class CollectionPhotosController: UIViewController {
         collection.backgroundColor = .clear
     }
     
+    func updateUI() {
+        if viewModel.photos.isEmpty {
+            collection.isHidden = true
+            emptyImageView.isHidden = false
+        } else {
+            collection.isHidden = false
+            emptyImageView.isHidden = true
+        }
+    }
+    
+    func setupAuthorLabel(name: String) {
+        self.author = name // Store the name in the variable
+    }
+    
     func configureViewModel() {
         if let id = collectionId {
             viewModel.getPhotos(collectionId: id)
         }
         viewModel.error = { errorMessage in
             print("Error: \(errorMessage)")
+            self.updateUI()
         }
         viewModel.success = {
+            self.updateUI()
             self.collection.reloadData()
         }
     }

@@ -18,6 +18,19 @@ class CollectionController: UIViewController {
         setSearchField()
         setCollection()
         configureViewModel()
+        configureNavigationBar()
+    }
+    
+    func configureNavigationBar() {
+        guard let navigationController = navigationController else { return }
+
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        // Make the navigation bar transparent
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.backgroundColor = .clear
     }
     
     func setSearchField() {
@@ -80,14 +93,16 @@ extension CollectionController: UICollectionViewDataSource, UICollectionViewDele
         viewModel.pagination(index: indexPath.item)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let collection = viewModel.collections[indexPath.item]
-//        let vc = storyboard?.instantiateViewController(identifier: "\(CollectionPhotosController.self)") as! CollectionPhotosController
-//        vc.collectionId = collection.id
-//        vc.title = collection.title
-//        vc.hidesBottomBarWhenPushed = true
-//        navigationController?.show(vc, sender: nil)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let collection = viewModel.collections[indexPath.item]
+        let vc = storyboard?.instantiateViewController(identifier: "\(CollectionPhotosController.self)") as! CollectionPhotosController
+        vc.collectionId = collection.id
+        vc.title = collection.title
+        vc.setupAuthorLabel(name: collection.user?.name ?? "")
+        
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.show(vc, sender: nil)
+    }
 }
 
 extension CollectionController: UISearchResultsUpdating {

@@ -64,7 +64,7 @@ class FirebaseManager {
     }
     
     func likePhoto(forUserEmail email: String, photoId: String, completion: @escaping (Result<Void, Error>) -> Void ) {
-        let userDocument = FirebaseManager.shared.database.collection("Users").document(email)
+        let userDocument = database.collection("Users").document(email)
         
         userDocument.updateData([
             "likedPhotos": FieldValue.arrayUnion([photoId])
@@ -78,7 +78,7 @@ class FirebaseManager {
     }
     
     func dislikePhoto(forUserEmail email: String, photoId: String, completion: @escaping (Result<Void, Error>) -> Void ) {
-        let userDocument = FirebaseManager.shared.database.collection("Users").document(email)
+        let userDocument = database.collection("Users").document(email)
         
         userDocument.updateData([
             "likedPhotos": FieldValue.arrayRemove([photoId])
@@ -92,7 +92,7 @@ class FirebaseManager {
     }
     
     func isPhotoLiked(forUserEmail email: String, photoId: String, completion: @escaping (Bool) -> Void) {
-        let userDocument = FirebaseManager.shared.database.collection("Users").document(email)
+        let userDocument = database.collection("Users").document(email)
         
         userDocument.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -100,6 +100,24 @@ class FirebaseManager {
                 completion(likedPhotos.contains(photoId))
             } else {
                 completion(false)
+            }
+        }
+    }
+    
+    func getLikedPhotos(forUserEmail email: String, completion: @escaping ([String]) -> Void) {
+        let userDocument = database.collection("Users").document(email)
+        
+        userDocument.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let likedPhotos = document.data()?["likedPhotos"] as? [String] {
+                    completion(likedPhotos)
+                } else {
+                    print("No liked photos found.")
+                    completion([])
+                }
+            } else {
+                print("Document does not exist or error occurred: \(String(describing: error?.localizedDescription))")
+                completion([])
             }
         }
     }

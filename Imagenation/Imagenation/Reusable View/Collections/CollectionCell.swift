@@ -26,11 +26,13 @@ class CollectionCell: UICollectionViewCell {
             setLabels()
         }
     }
+    
     var photoCount: Int? {
         didSet {
             setLabels()
         }
     }
+    
     var author: String? {
         didSet {
             setLabels()
