@@ -12,6 +12,7 @@ class TopicHeaderView: UICollectionReusableView {
     
     private var selectedIndex: IndexPath?
     private var topics: [Topic] = []
+    var defaultOpened = true
 
     var onTopicSelected: ((Topic) -> Void)?
 
@@ -28,6 +29,18 @@ class TopicHeaderView: UICollectionReusableView {
         self.topics = topics
         self.onTopicSelected = onTopicSelected
         collection.reloadData()
+        
+        if !self.topics.isEmpty && defaultOpened {
+            self.selectedIndex = IndexPath(item: 0, section: 0)
+            self.defaultOpened = false
+            
+            // Delay the selection to ensure the collection view has reloaded
+            DispatchQueue.main.async {
+                if let firstCell = self.collection.cellForItem(at: self.selectedIndex!) as? TopicCell {
+                    firstCell.view.backgroundColor = .white
+                }
+            }
+        }
     }
 }
 
