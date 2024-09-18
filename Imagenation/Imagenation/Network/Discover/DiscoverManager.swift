@@ -9,7 +9,7 @@ import Foundation
 
 protocol DiscoverManagerProtocol {
     func getPhotos(page: Int, completion: @escaping(([Photo]?, String?) -> Void))
-    func getPhotosById(photoId: [String], completion: @escaping(([Photo]?, String?) -> Void))
+    func getPhotoById(photoId: String, completion: @escaping((Photo?, String?) -> Void))
 }
 
 class DiscoverManager: DiscoverManagerProtocol {
@@ -20,9 +20,10 @@ class DiscoverManager: DiscoverManagerProtocol {
         NetworkManager.request(model: [Photo].self, endpoint: endpoint, parameters: parameters, completion: completion)
     }
     
-    func getPhotosById(photoId: [String], completion: @escaping (([Photo]?, String?) -> Void)) {
-        let endpoint = DiscoverEndpoint.photos.rawValue + "\(photoId)"
-        NetworkManager.request(model: [Photo].self, endpoint: endpoint, completion: completion)
+    func getPhotoById(photoId: String, completion: @escaping ((Photo?, String?) -> Void)) {
+        let endpoint = "photos/\(photoId)"
+        NetworkManager.request(model: Photo.self, endpoint: endpoint) { photo, errorMessage in
+            completion(photo, errorMessage)
+        }
     }
-
 }

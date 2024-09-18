@@ -25,23 +25,29 @@ class HomeController: UIViewController {
     }
         
     func configureUI() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.scrollDirection = .vertical
+        layout.sectionHeadersPinToVisibleBounds = true
+        collection.collectionViewLayout = layout
+        
         collection.register(UINib(nibName: "\(TopicHeaderView.self)", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "\(TopicHeaderView.self)")
         collection.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
-        collection.collectionViewLayout = createLayout()
     }
+    
+
     
     func configureNavigationBar() {
         guard let navigationController = navigationController else { return }
 
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
-        // Make the navigation bar transparent
+
         navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController.navigationBar.shadowImage = UIImage()
         navigationController.navigationBar.isTranslucent = true
         navigationController.navigationBar.backgroundColor = .clear
 
-        // Set title text attributes (optional)
         navigationItem.title = "ImageNation"
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
@@ -124,5 +130,9 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
         let cellHeight = cellWidth * aspectRatio
         
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        .init(width: collectionView.frame.width, height: 40)
     }
 }

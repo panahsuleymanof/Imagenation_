@@ -11,11 +11,9 @@ class CollectionController: UIViewController {
     @IBOutlet private weak var collection: UICollectionView!
     
     let viewModel = CollectionViewModel()
-    let searchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSearchField()
         setCollection()
         configureViewModel()
         configureNavigationBar()
@@ -33,26 +31,6 @@ class CollectionController: UIViewController {
         navigationController.navigationBar.backgroundColor = .clear
     }
     
-    func setSearchField() {
-        navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self // Set delegate for UISearchResultsUpdating
-        searchController.obscuresBackgroundDuringPresentation = false
-        //searchController.searchBar.delegate = self // Optional: for handling cancel button
-        definesPresentationContext = true
-        searchController.searchBar.tintColor = .white
-        if let searchTextField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            searchTextField.backgroundColor = UIColor(hex: "29292b")
-            searchTextField.attributedPlaceholder = NSAttributedString(
-                string: "Search collections",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-            )
-            if let glassIconView = searchTextField.leftView as? UIImageView {
-                glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
-                glassIconView.tintColor = UIColor.lightGray
-            }
-        }
-    }
-
     func setCollection() {
         collection.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collection.backgroundColor = .clear
@@ -102,11 +80,5 @@ extension CollectionController: UICollectionViewDataSource, UICollectionViewDele
         
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
-    }
-}
-
-extension CollectionController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        //
     }
 }

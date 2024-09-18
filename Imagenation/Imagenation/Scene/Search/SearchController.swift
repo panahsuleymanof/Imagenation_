@@ -11,36 +11,13 @@ import Kingfisher
 class SearchController: UIViewController {
     @IBOutlet private weak var collection: UICollectionView!
     let viewModel = SearchViewModel()
-    
-    let searchController = UISearchController()
-    var searchWorkItem: DispatchWorkItem? // For debouncing
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSearchField()
         configureUI()
         collection.backgroundColor = .clear
         configureViewModel()
-    }
-    
-    func setSearchField() {
-        navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self 
-        searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchBar.delegate = self // Handling cancel button
-        definesPresentationContext = true
-        searchController.searchBar.tintColor = .white
-        if let searchTextField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            searchTextField.backgroundColor = UIColor(hex: "29292b")
-            searchTextField.attributedPlaceholder = NSAttributedString(
-                string: "Search photos",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-            )
-            if let glassIconView = searchTextField.leftView as? UIImageView {
-                glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
-                glassIconView.tintColor = UIColor.lightGray
-            }
-        }
     }
     
     func configureUI() {
@@ -115,11 +92,5 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
         vc.altDescription = photo.altDescription
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
-    }
-}
-
-extension SearchController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
     }
 }

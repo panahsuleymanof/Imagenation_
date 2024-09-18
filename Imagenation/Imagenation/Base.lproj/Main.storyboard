@@ -354,6 +354,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4U-qh-fsr">
+                                        <rect key="frame" x="308" y="318.66666666666669" width="77" height="33.333333333333314"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Logout">
+                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
+                                            <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="logOutTapped:" destination="HbL-NA-63l" eventType="touchUpInside" id="X0w-g7-PTU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                 <constraints>
@@ -361,35 +372,57 @@
                                     <constraint firstItem="4f5-IN-FnW" firstAttribute="top" secondItem="NBo-GQ-PQn" secondAttribute="bottom" constant="8" symbolic="YES" id="Kmg-Em-eGQ"/>
                                     <constraint firstAttribute="height" constant="360" id="PTu-2H-fVD"/>
                                     <constraint firstItem="NBo-GQ-PQn" firstAttribute="leading" secondItem="nWw-fc-ZWz" secondAttribute="leading" constant="24" id="UmZ-Xr-FNr"/>
+                                    <constraint firstAttribute="trailing" secondItem="O4U-qh-fsr" secondAttribute="trailing" constant="8" id="ZMU-i6-XeJ"/>
                                     <constraint firstItem="NBo-GQ-PQn" firstAttribute="top" secondItem="nWw-fc-ZWz" secondAttribute="top" constant="208" id="vWy-cO-IVD"/>
+                                    <constraint firstAttribute="bottom" secondItem="O4U-qh-fsr" secondAttribute="bottom" constant="8" id="zjK-Cd-CXt"/>
                                 </constraints>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ish-w7-rIo">
-                                <rect key="frame" x="24" y="388" width="345" height="32"/>
-                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
-                                <segments>
-                                    <segment title="Photos"/>
-                                    <segment title="Likes"/>
-                                    <segment title="Collections"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" systemColor="systemGray2Color"/>
-                            </segmentedControl>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ga3-VW-rjb">
+                                <rect key="frame" x="0.0" y="420" width="393" height="349"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rwL-tV-BUG">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="HbL-NA-63l" id="0tS-es-s9l"/>
+                                    <outlet property="delegate" destination="HbL-NA-63l" id="Jvy-g8-r2N"/>
+                                </connections>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZU-fo-iRB">
+                                <rect key="frame" x="24" y="380" width="40" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Oxy-Gd-gTS"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Oxy-Gd-gTS" firstAttribute="bottom" secondItem="Ga3-VW-rjb" secondAttribute="bottom" id="2qB-Gi-AOt"/>
+                            <constraint firstItem="Ga3-VW-rjb" firstAttribute="top" secondItem="nWw-fc-ZWz" secondAttribute="bottom" constant="60" id="Drj-gI-sJS"/>
                             <constraint firstItem="Oxy-Gd-gTS" firstAttribute="trailing" secondItem="nWw-fc-ZWz" secondAttribute="trailing" id="QBD-so-dW3"/>
                             <constraint firstItem="nWw-fc-ZWz" firstAttribute="leading" secondItem="Oxy-Gd-gTS" secondAttribute="leading" id="SAW-44-ESF"/>
-                            <constraint firstItem="ish-w7-rIo" firstAttribute="leading" secondItem="Oxy-Gd-gTS" secondAttribute="leading" constant="24" id="T7X-JU-tTp"/>
+                            <constraint firstItem="Oxy-Gd-gTS" firstAttribute="trailing" secondItem="Ga3-VW-rjb" secondAttribute="trailing" id="YiU-jg-A0i"/>
                             <constraint firstItem="nWw-fc-ZWz" firstAttribute="top" secondItem="3WY-gl-YSD" secondAttribute="top" id="a5m-Y5-FB9"/>
-                            <constraint firstItem="Oxy-Gd-gTS" firstAttribute="trailing" secondItem="ish-w7-rIo" secondAttribute="trailing" constant="24" id="pHy-yd-Qyo"/>
-                            <constraint firstItem="ish-w7-rIo" firstAttribute="top" secondItem="nWw-fc-ZWz" secondAttribute="bottom" constant="28" id="wp6-SE-yM2"/>
+                            <constraint firstItem="Ga3-VW-rjb" firstAttribute="leading" secondItem="Oxy-Gd-gTS" secondAttribute="leading" id="rX2-il-L6d"/>
+                            <constraint firstItem="VZU-fo-iRB" firstAttribute="leading" secondItem="Oxy-Gd-gTS" secondAttribute="leading" constant="24" id="teA-Ts-4d2"/>
+                            <constraint firstItem="VZU-fo-iRB" firstAttribute="top" secondItem="nWw-fc-ZWz" secondAttribute="bottom" constant="20" id="wyf-yC-1DB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iw6-di-nW0">
-                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="c4M-Te-oHJ"/>
+                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="c4M-Te-oHJ">
+                            <connections>
+                                <action selector="profileButtonTapped:" destination="HbL-NA-63l" id="bVI-yx-gnL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="accountView" destination="nWw-fc-ZWz" id="e0x-hY-Gly"/>
+                        <outlet property="collection" destination="Ga3-VW-rjb" id="SuO-lA-6JS"/>
                         <outlet property="fullName" destination="4f5-IN-FnW" id="LMv-NI-r0q"/>
                     </connections>
                 </viewController>
@@ -879,6 +912,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
