@@ -32,7 +32,6 @@ class ProfileViewModel {
         for id in photoIds {
             dispatchGroup.enter()
             
-            // Call DiscoverManager for each photo ID
             discoverManager.getPhotoById(photoId: id) { [weak self] photo, errorMessage in
                 guard let self = self else { return }
                 

@@ -204,6 +204,7 @@
 		C11B9D3D2C90D84600D1EFEB /* PhotoDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C11B9D3E2C90DAB000D1EFEB /* InfoController.swift */,
 				C11B9BF42C8C470E00E190D4 /* PhotoDetailController.swift */,
 				C1CA9A002C8CB32200132460 /* PhotoDetailViewModel.swift */,
 			);
@@ -268,6 +269,15 @@
 			path = "Topic's Photo";
 			sourceTree = "<group>";
 		};
+		C1445B1D2C9B8768003664C7 /* Collection's Photos */ = {
+			isa = PBXGroup;
+			children = (
+				C1CA9A072C8D75C500132460 /* CollectionPhotosController.swift */,
+				C1CA9A092C8D78D400132460 /* CollectionPhotoViewModel.swift */,
+			);
+			path = "Collection's Photos";
+			sourceTree = "<group>";
+		};
 		C199CF9B2C54E3FF00E2A22F = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +316,7 @@
 		C199CFBB2C5A5EF900E2A22F /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C1445B1D2C9B8768003664C7 /* Collection's Photos */,
 				C11B9D3D2C90D84600D1EFEB /* PhotoDetail */,
 				C11B9D3C2C90D83600D1EFEB /* Topic */,
 				C1CA99F62C8C8C4A00132460 /* Collection */,
@@ -314,9 +325,6 @@
 				C199D0012C66661600E2A22F /* Register */,
 				C199D0312C6CBC2700E2A22F /* Home */,
 				C11B9BCB2C8845F500E190D4 /* Search */,
-				C1CA9A072C8D75C500132460 /* CollectionPhotosController.swift */,
-				C1CA9A092C8D78D400132460 /* CollectionPhotoViewModel.swift */,
-				C11B9D3E2C90DAB000D1EFEB /* InfoController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -713,6 +721,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -745,6 +754,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

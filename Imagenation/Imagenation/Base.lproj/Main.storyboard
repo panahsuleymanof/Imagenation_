@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LJi-2q-Pad">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hgy-KP-sii">
                                     <size key="itemSize" width="128" height="128"/>
@@ -36,19 +36,62 @@
                                     <outlet property="delegate" destination="WDh-QA-RdI" id="rhL-Xe-iqv"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHZ-f9-x5g">
+                                <rect key="frame" x="16" y="103" width="361" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search photos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DXx-Xb-lMJ">
+                                        <rect key="frame" x="12" y="0.0" width="300" height="40"/>
+                                        <color key="tintColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="Gnv-bu-uUD"/>
+                                        </constraints>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bc6-sw-SSm">
+                                        <rect key="frame" x="311.33333333333331" y="3" width="49.666666666666686" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system">
+                                            <color key="baseForegroundColor" red="0.63529411764705879" green="0.63529411764705879" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="searchButtonTapped:" destination="WDh-QA-RdI" eventType="touchUpInside" id="F0N-qm-mYW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3Ar-0f-2mO"/>
+                                    <constraint firstAttribute="trailing" secondItem="bc6-sw-SSm" secondAttribute="trailing" id="DwM-pu-MX7"/>
+                                    <constraint firstAttribute="bottom" secondItem="DXx-Xb-lMJ" secondAttribute="bottom" id="F12-cO-EGb"/>
+                                    <constraint firstItem="DXx-Xb-lMJ" firstAttribute="top" secondItem="vHZ-f9-x5g" secondAttribute="top" id="JQn-cr-liv"/>
+                                    <constraint firstItem="bc6-sw-SSm" firstAttribute="centerY" secondItem="vHZ-f9-x5g" secondAttribute="centerY" id="Mzf-38-Dms"/>
+                                    <constraint firstItem="DXx-Xb-lMJ" firstAttribute="leading" secondItem="vHZ-f9-x5g" secondAttribute="leading" constant="12" id="gos-Yn-BsH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HUi-u7-KF0"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="HUi-u7-KF0" firstAttribute="trailing" secondItem="vHZ-f9-x5g" secondAttribute="trailing" constant="16" id="AUG-pO-2DR"/>
                             <constraint firstItem="LJi-2q-Pad" firstAttribute="trailing" secondItem="HUi-u7-KF0" secondAttribute="trailing" id="NNE-53-FQK"/>
-                            <constraint firstItem="LJi-2q-Pad" firstAttribute="top" secondItem="HUi-u7-KF0" secondAttribute="top" id="RQe-wM-9gc"/>
+                            <constraint firstItem="LJi-2q-Pad" firstAttribute="top" secondItem="HUi-u7-KF0" secondAttribute="top" constant="52" id="RQe-wM-9gc"/>
                             <constraint firstItem="LJi-2q-Pad" firstAttribute="leading" secondItem="HUi-u7-KF0" secondAttribute="leading" id="bEL-ed-S2g"/>
+                            <constraint firstItem="vHZ-f9-x5g" firstAttribute="top" secondItem="HUi-u7-KF0" secondAttribute="top" id="ba8-S5-5aD"/>
                             <constraint firstItem="LJi-2q-Pad" firstAttribute="bottom" secondItem="HUi-u7-KF0" secondAttribute="bottom" id="lyj-wx-XmX"/>
+                            <constraint firstItem="vHZ-f9-x5g" firstAttribute="leading" secondItem="HUi-u7-KF0" secondAttribute="leading" constant="16" id="sgy-T3-P4P"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Zo-PN-IMX"/>
                     <connections>
                         <outlet property="collection" destination="LJi-2q-Pad" id="ytr-RB-KTX"/>
+                        <outlet property="textField" destination="DXx-Xb-lMJ" id="FD2-7A-jSL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwF-Pd-Jbm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -354,17 +397,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4U-qh-fsr">
-                                        <rect key="frame" x="308" y="318.66666666666669" width="77" height="33.333333333333314"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Logout">
-                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
-                                            <color key="baseForegroundColor" systemColor="systemRedColor"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="logOutTapped:" destination="HbL-NA-63l" eventType="touchUpInside" id="X0w-g7-PTU"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                                 <constraints>
@@ -372,9 +404,7 @@
                                     <constraint firstItem="4f5-IN-FnW" firstAttribute="top" secondItem="NBo-GQ-PQn" secondAttribute="bottom" constant="8" symbolic="YES" id="Kmg-Em-eGQ"/>
                                     <constraint firstAttribute="height" constant="360" id="PTu-2H-fVD"/>
                                     <constraint firstItem="NBo-GQ-PQn" firstAttribute="leading" secondItem="nWw-fc-ZWz" secondAttribute="leading" constant="24" id="UmZ-Xr-FNr"/>
-                                    <constraint firstAttribute="trailing" secondItem="O4U-qh-fsr" secondAttribute="trailing" constant="8" id="ZMU-i6-XeJ"/>
                                     <constraint firstItem="NBo-GQ-PQn" firstAttribute="top" secondItem="nWw-fc-ZWz" secondAttribute="top" constant="208" id="vWy-cO-IVD"/>
-                                    <constraint firstAttribute="bottom" secondItem="O4U-qh-fsr" secondAttribute="bottom" constant="8" id="zjK-Cd-CXt"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ga3-VW-rjb">
@@ -413,13 +443,7 @@
                             <constraint firstItem="VZU-fo-iRB" firstAttribute="top" secondItem="nWw-fc-ZWz" secondAttribute="bottom" constant="20" id="wyf-yC-1DB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iw6-di-nW0">
-                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="c4M-Te-oHJ">
-                            <connections>
-                                <action selector="profileButtonTapped:" destination="HbL-NA-63l" id="bVI-yx-gnL"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="iw6-di-nW0"/>
                     <connections>
                         <outlet property="accountView" destination="nWw-fc-ZWz" id="e0x-hY-Gly"/>
                         <outlet property="collection" destination="Ga3-VW-rjb" id="SuO-lA-6JS"/>
@@ -861,6 +885,7 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -894,10 +919,10 @@
     <resources>
         <image name="arrow.down.circle.fill" catalog="system" width="128" height="123"/>
         <image name="collections" width="30" height="30"/>
-        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gallery" width="30" height="30"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="123"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="search" width="30" height="30"/>
         <image name="user" width="30" height="30"/>
@@ -912,9 +937,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

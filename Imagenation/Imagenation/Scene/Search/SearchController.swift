@@ -8,16 +8,22 @@
 import UIKit
 import Kingfisher
 
-class SearchController: UIViewController {
+class SearchController: UIViewController, UITextFieldDelegate {
+    @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var collection: UICollectionView!
+    
     let viewModel = SearchViewModel()
-
+    let clearButton = UIButton(type: .custom)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         collection.backgroundColor = .clear
         configureViewModel()
+        
+        textField.delegate = self
+        setupClearButton()
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func configureUI() {
@@ -27,11 +33,52 @@ class SearchController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .vertical
         
+        textField.backgroundColor = .clear
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Search photos",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "a2a2a9")]
+        )
+        
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
         
         collection.register(UINib(nibName: "CategoryHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoryHeaderView")
         collection.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
+    }
+    
+    func setupClearButton() {
+        clearButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        clearButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        clearButton.addTarget(self, action: #selector(clearTextField), for: .touchUpInside)
+        
+        textField.rightView = clearButton
+        textField.rightViewMode = .always
+        
+        clearButton.isHidden = true
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text, text.isEmpty {
+            clearButton.isHidden = true
+        } else {
+            clearButton.isHidden = false
+        }
+    }
+    
+    @objc func clearTextField() {
+        if !viewModel.searchedPhotos.isEmpty {
+            collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
+            viewModel.searchedPhotos.removeAll()
+            viewModel.page = 1
+            viewModel.getPhotos()
+        }
+        textField.text = ""
+        clearButton.isHidden = true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     func configureViewModel() {
@@ -44,20 +91,34 @@ class SearchController: UIViewController {
             self.collection.reloadData()
         }
     }
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        if let text = textField.text {
+            collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
+            viewModel.getSearchedPhotos(query: text)
+        }
+    }
 }
 
 extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.photos.count
+            viewModel.searchedPhotos.isEmpty ? viewModel.photos.count : viewModel.searchedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
-        let photo = viewModel.photos[indexPath.item]
+        let photo: Photo
+        if viewModel.searchedPhotos.isEmpty {
+            photo = viewModel.photos[indexPath.item]
+        } else {
+            photo = viewModel.searchedPhotos[indexPath.item]
+        }
+
         if let url = URL(string: photo.urls.regular) {
             cell.image.kf.setImage(with: url)
             cell.userName.text = photo.user.name
         }
+
         return cell
     }
     

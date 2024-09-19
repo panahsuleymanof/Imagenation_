@@ -24,6 +24,7 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBarButtonItem()
         view.addSubview(emptyImageView)
         setImageConstraints()
         fullName.text = UserDefaults.standard.string(forKey: "fullName")
@@ -33,6 +34,18 @@ class ProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureViewModel()
+    }
+
+    func setBarButtonItem() {
+        let accountSettingsAction = UIAction(title: "Account Settings", image: UIImage(systemName: "gearshape")) { _ in
+            self.openAccountSettings()
+        }
+        let logoutAction = UIAction(title: "Log Out", image: UIImage(systemName: "arrow.right.square")) { _ in
+            self.logout()
+        }
+        let menu = UIMenu(title: "", children: [accountSettingsAction, logoutAction])
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
+        self.navigationItem.rightBarButtonItem = menuButton
     }
     
     func setImageConstraints() {
@@ -81,7 +94,11 @@ class ProfileController: UIViewController {
         }
     }
     
-    @IBAction func logOutTapped(_ sender: Any) {
+    func openAccountSettings() {
+        print("Account Settings")
+    }
+    
+    func logout() {
         let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
         
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive) { _ in
@@ -101,10 +118,6 @@ class ProfileController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
-    @IBAction func profileButtonTapped(_ sender: Any) {
-
-    }
-    
 }
 
 extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -125,7 +138,7 @@ extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = viewModel.photos[indexPath.item]
-        let vc = storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
         vc.photoURL = photo.urls.raw
         vc.username = photo.user.name
         vc.photoId = photo.id
@@ -142,3 +155,16 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ProfileController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        true
+    }
+}

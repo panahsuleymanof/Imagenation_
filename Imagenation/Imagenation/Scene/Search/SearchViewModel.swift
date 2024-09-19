@@ -10,6 +10,7 @@ import Foundation
 class SearchViewModel {
     var topics = [Topic]()
     var photos = [Photo]()
+    var searchedPhotos = [Photo]()
     var page = 1
 
     var success: (() -> Void)?
@@ -40,7 +41,19 @@ class SearchViewModel {
         }
     }
     
-
+    func getSearchedPhotos(query: String) {
+        page = 1
+        searchedPhotos.removeAll()
+        discoverManager.searchPhotos(query: query, page: page) { data, errorMessage in
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                self.searchedPhotos.append(contentsOf: data.results)
+                self.success?()
+            }
+        }
+    }
+    
     func pagination(index: Int) {
         if index == photos.count - 2 {
             page += 1
