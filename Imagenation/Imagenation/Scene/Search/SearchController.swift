@@ -59,7 +59,9 @@ class SearchController: UIViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, text.isEmpty {
-            clearButton.isHidden = true
+            clearButton.isHidden = true        
+            viewModel.resetSearch()
+            collection.reloadData()
         } else {
             clearButton.isHidden = false
         }
@@ -68,9 +70,8 @@ class SearchController: UIViewController, UITextFieldDelegate {
     @objc func clearTextField() {
         if !viewModel.searchedPhotos.isEmpty {
             collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
-            viewModel.searchedPhotos.removeAll()
-            viewModel.page = 1
-            viewModel.getPhotos()
+            viewModel.resetSearch()
+            collection.reloadData()
         }
         textField.text = ""
         clearButton.isHidden = true
@@ -93,9 +94,14 @@ class SearchController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func searchButtonTapped(_ sender: Any) {
-        if let text = textField.text {
+        if let text = textField.text, !text.isEmpty {
             collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
+            viewModel.resetSearch()
+            viewModel.isSearching = true
             viewModel.getSearchedPhotos(query: text)
+        } else {
+            viewModel.resetSearch()
+            collection.reloadData()
         }
     }
 }
@@ -141,12 +147,23 @@ extension SearchController: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        viewModel.pagination(index: indexPath.item)
+        if viewModel.isSearching {
+            if let query = textField.text, !query.isEmpty {
+                viewModel.pagination(index: indexPath.item, query: query)
+            }
+        } else {
+            viewModel.pagination(index: indexPath.item)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as! PhotoDetailController
-        let photo = viewModel.photos[indexPath.item]
+        let photo: Photo
+        if viewModel.searchedPhotos.isEmpty {
+            photo = viewModel.photos[indexPath.item]
+        } else {
+            photo = viewModel.searchedPhotos[indexPath.item]
+        }
         vc.photoURL = photo.urls.raw
         vc.username = photo.user.name
         vc.photoId = photo.id

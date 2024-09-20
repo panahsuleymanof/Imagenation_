@@ -11,7 +11,12 @@ class SearchViewModel {
     var topics = [Topic]()
     var photos = [Photo]()
     var searchedPhotos = [Photo]()
+    
     var page = 1
+    var searchPage = 1
+    
+    var isSearching = false
+    var isLoading = false
 
     var success: (() -> Void)?
     var error: ((String) -> Void)?
@@ -31,7 +36,10 @@ class SearchViewModel {
     }
     
     func getPhotos() {
+        guard !isLoading else { return } // Prevent multiple loads
+        isLoading = true
         discoverManager.getPhotos(page: page) { data, errorMessage in
+            self.isLoading = false
             if let errorMessage {
                 self.error?(errorMessage)
             } else if let data {
@@ -42,9 +50,10 @@ class SearchViewModel {
     }
     
     func getSearchedPhotos(query: String) {
-        page = 1
-        searchedPhotos.removeAll()
-        discoverManager.searchPhotos(query: query, page: page) { data, errorMessage in
+        guard !isLoading else { return } // Prevent multiple loads
+        isLoading = true
+        discoverManager.searchPhotos(query: query, page: searchPage) { data, errorMessage in
+            self.isLoading = false
             if let errorMessage {
                 self.error?(errorMessage)
             } else if let data {
@@ -54,10 +63,23 @@ class SearchViewModel {
         }
     }
     
-    func pagination(index: Int) {
-        if index == photos.count - 2 {
-            page += 1
-            getPhotos()
+    func resetSearch() {
+        searchPage = 1
+        searchedPhotos.removeAll()
+        isSearching = false
+    }
+    
+    func pagination(index: Int, query: String? = nil) {
+        if let query = query, isSearching {
+            if index == searchedPhotos.count - 2 {
+                searchPage += 1
+                getSearchedPhotos(query: query)
+            }
+        } else {
+            if index == photos.count - 2 {
+                page += 1
+                getPhotos()
+            }
         }
     }
 }
