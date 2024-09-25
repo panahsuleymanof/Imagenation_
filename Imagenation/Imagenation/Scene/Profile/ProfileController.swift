@@ -108,10 +108,10 @@ class ProfileController: UIViewController {
     }
     
     func openAccountSettings() {
-        let vc = AccountSettings()
+        let vc = SettingsViewController()
         
         let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.modalPresentationStyle = .pageSheet
+        navigationController.modalPresentationStyle = .formSheet
         present(navigationController, animated: true)
     }
     
