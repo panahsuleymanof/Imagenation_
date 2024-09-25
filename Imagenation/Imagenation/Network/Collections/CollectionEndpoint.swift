@@ -9,6 +9,7 @@ import Foundation
 
 enum CollectionEndpoint: String {
     case collections = "/collections"
+    case searchCollections = "/search/collections"
 }
 
 enum CollectionPhotoEndpoint {

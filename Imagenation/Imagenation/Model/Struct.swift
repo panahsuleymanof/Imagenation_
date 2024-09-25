@@ -57,10 +57,22 @@ struct UserInfo: Codable {
     let email: String
 }
 
-struct SearchResult: Codable {
+struct SearchPhoto: Codable {
     let total: Int
     let totalPages: Int
     let results: [Photo]
+    
+    enum CodingKeys: String, CodingKey {
+        case total
+        case totalPages = "total_pages"
+        case results
+    }
+}
+
+struct SearchCollection: Codable {
+    let total: Int
+    let totalPages: Int
+    let results: [Collection]
     
     enum CodingKeys: String, CodingKey {
         case total

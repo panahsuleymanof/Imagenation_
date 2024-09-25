@@ -117,7 +117,7 @@ extension CollectionPhotosController: UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = viewModel.photos[indexPath.item]
         let vc = storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
-        vc.photoURL = photo.urls.raw
+        vc.photoURL = photo.urls.regular
         vc.username = photo.user.name
         vc.photoId = photo.id
         vc.altDescription = photo.altDescription

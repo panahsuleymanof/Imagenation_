@@ -25,6 +25,7 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBarButtonItem()
+        configureNavigationBar()
         view.addSubview(emptyImageView)
         setImageConstraints()
         fullName.text = UserDefaults.standard.string(forKey: "fullName")
@@ -34,6 +35,18 @@ class ProfileController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureViewModel()
+    }
+    
+    func configureNavigationBar() {
+        guard let navigationController = navigationController else { return }
+
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        // Make the navigation bar transparent
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.backgroundColor = .clear
     }
 
     func setBarButtonItem() {
@@ -95,7 +108,11 @@ class ProfileController: UIViewController {
     }
     
     func openAccountSettings() {
-        print("Account Settings")
+        let vc = AccountSettings()
+        
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .pageSheet
+        present(navigationController, animated: true)
     }
     
     func logout() {
@@ -139,7 +156,7 @@ extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = viewModel.photos[indexPath.item]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
-        vc.photoURL = photo.urls.raw
+        vc.photoURL = photo.urls.regular
         vc.username = photo.user.name
         vc.photoId = photo.id
         vc.altDescription = photo.altDescription

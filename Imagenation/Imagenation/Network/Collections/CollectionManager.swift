@@ -23,4 +23,13 @@ class CollectionManager {
                                parameters: parameters,
                                completion: completion)
     }
+    
+    func searchCollection(query: String, page: Int, completion: @escaping((SearchCollection?, String?) -> Void)) {
+        let parameters: [String:Any] = ["query": query,
+                                        "page": page,
+                                        "per_page": 20
+        ]
+        let endpoint = CollectionEndpoint.searchCollections.rawValue
+        NetworkManager.request(model: SearchCollection.self, endpoint: endpoint, parameters: parameters, completion: completion)
+    }
 }

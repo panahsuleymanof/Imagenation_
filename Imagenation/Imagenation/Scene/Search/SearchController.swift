@@ -18,12 +18,25 @@ class SearchController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNavigationBar()
         collection.backgroundColor = .clear
         configureViewModel()
         
         textField.delegate = self
         setupClearButton()
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
+    func configureNavigationBar() {
+        guard let navigationController = navigationController else { return }
+
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        // Make the navigation bar transparent
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.backgroundColor = .clear
     }
     
     func configureUI() {

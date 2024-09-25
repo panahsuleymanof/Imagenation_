@@ -75,7 +75,7 @@ extension CollectionCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
         let photo = photos[indexPath.item]
-        let url = URL(string: photo.urls?.regular ?? "")
+        let url = URL(string: photo.urls?.small ?? "")
         cell.image.kf.setImage(with: url)
         return cell
     }
