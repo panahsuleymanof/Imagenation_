@@ -7,13 +7,13 @@
 
 import UIKit
 
-class LoginController: UIViewController, UITextFieldDelegate {
+class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var emailFieldView: UIView!
     @IBOutlet private weak var pswdField: UITextField!
     @IBOutlet private weak var pswdFieldView: UIView!
     
-    let viewModel = LoginViewModel()
+    let viewModel = LoginVM()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func joinTapped(_ sender: Any) {
-        let registerVC = storyboard?.instantiateViewController(withIdentifier: "\(RegisterController.self)") as! RegisterController
+        let registerVC = storyboard?.instantiateViewController(withIdentifier: "\(RegisterVC.self)") as! RegisterVC
         registerVC.logInCallBack = { [weak self] email, password in
             self?.emailField.text = email
             self?.pswdField.text = password

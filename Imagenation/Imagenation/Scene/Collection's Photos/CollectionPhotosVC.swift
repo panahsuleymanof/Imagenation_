@@ -1,27 +1,61 @@
 //
-//  TopicController.swift
+//  CollectionPhotosController.swift
 //  Imagenation
 //
-//  Created by Panah Suleymanli on 07.09.24.
+//  Created by Panah Suleymanli on 08.09.24.
 //
 
 import UIKit
-import Kingfisher
 
-class TopicController: UIViewController {
-
+class CollectionPhotosVC: UIViewController {
+    @IBOutlet weak var authorName: UILabel!
     @IBOutlet private weak var collection: UICollectionView!
     
-    var viewModel = TopicViewModel()
-    var topicId: String?
+    let viewModel = CollectionPhotoVM()
+    var collectionId: String?
+    private var author: String?
+    
+    let emptyImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "empty")
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(emptyImageView)
+        setImageConstraints()
         setupCollection()
         configureViewModel()
+        configureNavigationBar()
         
+        if let name = author {
+            authorName.text = "Curated by \(name)"
+        }
+    }
+
+    func setImageConstraints() {
+        emptyImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyImageView.widthAnchor.constraint(equalToConstant: 400),
+            emptyImageView.heightAnchor.constraint(equalToConstant: 400)
+        ])
+    }
+    
+    func configureNavigationBar() {
+        guard let navigationController = navigationController else { return }
+
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
+        // Make the navigation bar transparent
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.backgroundColor = .clear
     }
     
     func setupCollection() {
@@ -36,20 +70,36 @@ class TopicController: UIViewController {
         collection.backgroundColor = .clear
     }
     
+    func updateUI() {
+        if viewModel.photos.isEmpty {
+            collection.isHidden = true
+            emptyImageView.isHidden = false
+        } else {
+            collection.isHidden = false
+            emptyImageView.isHidden = true
+        }
+    }
+    
+    func setupAuthorLabel(name: String) {
+        self.author = name // Store the name in the variable
+    }
+    
     func configureViewModel() {
-        if let id = topicId {
-            viewModel.getPhotos(topicID: id)
+        if let id = collectionId {
+            viewModel.getPhotos(collectionId: id)
         }
         viewModel.error = { errorMessage in
             print("Error: \(errorMessage)")
+            self.updateUI()
         }
         viewModel.success = {
+            self.updateUI()
             self.collection.reloadData()
         }
     }
 }
 
-extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CollectionPhotosVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.photos.count
     }
@@ -66,7 +116,7 @@ extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = viewModel.photos[indexPath.item]
-        let vc = storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailVC.self)") as! PhotoDetailVC
         vc.photoURL = photo.urls.regular
         vc.username = photo.user.name
         vc.photoId = photo.id
@@ -76,13 +126,13 @@ extension TopicController: UICollectionViewDataSource, UICollectionViewDelegate 
     }
 }
 
-extension TopicController: UICollectionViewDelegateFlowLayout {
+extension CollectionPhotosVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2
         return CGSize(width: width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        viewModel.pagination(index: indexPath.item, id: topicId ?? "")
+        viewModel.pagination(index: indexPath.item, id: collectionId ?? "")
     }
 }

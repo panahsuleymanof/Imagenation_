@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginViewModel {
+class LoginVM {
     var loginSuccess: (() -> Void)?
     var loginFailed: ((String) -> Void)?
     

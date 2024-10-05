@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search Controller-->
+        <!--SearchVC-->
         <scene sceneID="p1u-Fe-kr0">
             <objects>
-                <viewController storyboardIdentifier="SearchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WDh-QA-RdI" customClass="SearchController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WDh-QA-RdI" customClass="SearchVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2P1-BU-OMi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,10 +98,10 @@
             </objects>
             <point key="canvasLocation" x="-1335.1145038167938" y="198.59154929577466"/>
         </scene>
-        <!--Topic Controller-->
+        <!--TopicVC-->
         <scene sceneID="2bm-Qd-QHF">
             <objects>
-                <viewController storyboardIdentifier="TopicController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XD4-Pw-WiX" customClass="TopicController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopicController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XD4-Pw-WiX" customClass="TopicVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a9m-uQ-wUK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="-1335" y="949"/>
         </scene>
-        <!--Info Controller-->
+        <!--InfoVC-->
         <scene sceneID="e5G-Mw-QKy">
             <objects>
-                <viewController storyboardIdentifier="InfoController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UeJ-Ie-hja" customClass="InfoController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UeJ-Ie-hja" customClass="InfoVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7qF-rX-QJ3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,10 +212,10 @@
             </objects>
             <point key="canvasLocation" x="-1315.2671755725191" y="1661.9718309859156"/>
         </scene>
-        <!--Photo Detail Controller-->
+        <!--Photo DetailVC-->
         <scene sceneID="rtI-40-hRq">
             <objects>
-                <viewController storyboardIdentifier="PhotoDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfy-EP-K8q" customClass="PhotoDetailController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfy-EP-K8q" customClass="PhotoDetailVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VGp-pD-KUq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="-199" y="949"/>
         </scene>
-        <!--Collection Photos Controller-->
+        <!--Collection PhotosVC-->
         <scene sceneID="LqW-sw-CQt">
             <objects>
-                <viewController storyboardIdentifier="CollectionPhotosController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQL-m2-kVL" customClass="CollectionPhotosController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionPhotosController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQL-m2-kVL" customClass="CollectionPhotosVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SoG-uG-oCa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,47 +330,10 @@
             </objects>
             <point key="canvasLocation" x="937" y="949"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="fFd-0V-UDL">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fld-ml-BcJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="9nT-0A-Emi" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nIU-pa-MYO">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VMD-X3-QXU">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Zlc-q6-NC1">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zlc-q6-NC1" id="r3l-mj-PvB">
-                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="uoq-n2-fdA"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="VMD-X3-QXU" firstAttribute="leading" secondItem="uoq-n2-fdA" secondAttribute="leading" id="3z0-kX-a9B"/>
-                            <constraint firstItem="VMD-X3-QXU" firstAttribute="top" secondItem="uoq-n2-fdA" secondAttribute="top" id="JEb-dG-O9w"/>
-                            <constraint firstItem="uoq-n2-fdA" firstAttribute="bottom" secondItem="VMD-X3-QXU" secondAttribute="bottom" id="aMm-mA-wAg"/>
-                            <constraint firstItem="uoq-n2-fdA" firstAttribute="trailing" secondItem="VMD-X3-QXU" secondAttribute="trailing" id="r4K-h2-U9R"/>
-                        </constraints>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="6223" y="647"/>
-        </scene>
-        <!--Collection Controller-->
+        <!--CollectionVC-->
         <scene sceneID="I7I-KE-Fot">
             <objects>
-                <viewController storyboardIdentifier="CollectionController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NbI-ji-rfn" customClass="CollectionController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NbI-ji-rfn" customClass="CollectionVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ztb-Hl-D7r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -452,10 +415,10 @@
             </objects>
             <point key="canvasLocation" x="-199" y="199"/>
         </scene>
-        <!--Profile Controller-->
+        <!--ProfileVC-->
         <scene sceneID="sLP-84-niM">
             <objects>
-                <viewController storyboardIdentifier="ProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HbL-NA-63l" customClass="ProfileController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HbL-NA-63l" customClass="ProfileVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3WY-gl-YSD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -534,10 +497,10 @@
             </objects>
             <point key="canvasLocation" x="936.64122137404581" y="198.59154929577466"/>
         </scene>
-        <!--Home Controller-->
+        <!--HomeVC-->
         <scene sceneID="euo-VS-t0I">
             <objects>
-                <viewController storyboardIdentifier="HomeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pXA-st-Oa6" customClass="HomeController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pXA-st-Oa6" customClass="HomeVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zGs-bi-am2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -606,10 +569,10 @@
             </objects>
             <point key="canvasLocation" x="-999" y="-1296"/>
         </scene>
-        <!--Login Controller-->
+        <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -714,10 +677,10 @@
             </objects>
             <point key="canvasLocation" x="-513.74045801526711" y="-2002.1126760563382"/>
         </scene>
-        <!--Register Controller-->
+        <!--RegisterVC-->
         <scene sceneID="zQa-S7-UdN">
             <objects>
-                <viewController storyboardIdentifier="RegisterController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sz9-b0-82S" customClass="RegisterController" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sz9-b0-82S" customClass="RegisterVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iux-5Q-mCC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

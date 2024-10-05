@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ProfileController: UIViewController {
+class ProfileVC: UIViewController {
     @IBOutlet private weak var accountView: UIView!
     @IBOutlet private weak var collection: UICollectionView!
     @IBOutlet private weak var fullName: UILabel!
     
-    let viewModel = ProfileViewModel()
+    let viewModel = ProfileVM()
 
     let emptyImageView: UIImageView = {
         let imageView = UIImageView()
@@ -137,7 +137,7 @@ class ProfileController: UIViewController {
     }
 }
 
-extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ProfileVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.photos.count
@@ -155,7 +155,7 @@ extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = viewModel.photos[indexPath.item]
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailController.self)") as! PhotoDetailController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "\(PhotoDetailVC.self)") as! PhotoDetailVC
         vc.photoURL = photo.urls.regular
         vc.username = photo.user.name
         vc.photoId = photo.id
@@ -165,14 +165,14 @@ extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegat
     }
 }
 
-extension ProfileController: UICollectionViewDelegateFlowLayout {
+extension ProfileVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2
         return CGSize(width: width, height: 300)
     }
 }
 
-extension ProfileController: UIPopoverPresentationControllerDelegate {
+extension ProfileVC: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         .none
     }

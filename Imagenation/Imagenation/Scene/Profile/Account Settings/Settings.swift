@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     let sections = [
-        ["Edit Profile", "Change Password", "Account"],
+        ["User Info", "Change Password", "Account"],
         ["Privacy & Policy", "Terms of Service"]
     ]
     
@@ -26,26 +26,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func setupNavigationBar() {
         title = "Settings"
+        
+        navigationController?.navigationBar.tintColor = .lightGray
+        
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissView))
         navigationItem.leftBarButtonItem = dismissButton
+        
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
     }
     
     func customizeNavigationBarAppearance() {
         if let navigationBar = navigationController?.navigationBar {
             let appearance = UINavigationBarAppearance()
-
-            // Ensure that the navigation bar has a solid background (adapt to both Light and Dark Mode)
             appearance.configureWithOpaqueBackground()
-
-            // Set background color to match the table view's background (systemGroupedBackground)
             appearance.backgroundColor = UIColor.systemGroupedBackground
-
-            // Set title text color to dynamically adjust to Light and Dark Mode
             appearance.titleTextAttributes = [
-                .foregroundColor: UIColor.label  // This adapts to black in Light Mode and white in Dark Mode
+                .foregroundColor: UIColor.label
             ]
 
-            // Apply the appearance to the navigation bar
             navigationBar.standardAppearance = appearance
             navigationBar.scrollEdgeAppearance = appearance
         }
@@ -115,10 +114,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: - TableView Delegate for Row Selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Handle cell selection
+        let selectedItem = sections[indexPath.section][indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // You can push the next screen for each selected item
+        if indexPath.section == 0 && indexPath.row == 0 {
+            let vc = UserInformationVC()
+            navigationController?.show(vc, sender: nil)
+        } else {
+            print("Selected \(selectedItem)")
+        }
         print("Selected \(sections[indexPath.section][indexPath.row])")
     }
 }
+ 

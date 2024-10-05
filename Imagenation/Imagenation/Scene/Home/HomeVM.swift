@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HomeViewModel {
+class HomeVM {
     var topics = [Topic]()
     var photos = [Photo]()
     var page = 1

@@ -121,4 +121,27 @@ class FirebaseManager {
             }
         }
     }
+    
+    func getUserInfo(forUserEmail email: String, completion: @escaping (Result<[String], Error>) -> Void) {
+        let userDocument = database.collection("Users").document(email)
+        
+        userDocument.getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot, snapshot.exists {
+                let data = snapshot.data()
+                var userInfo = [String]()
+                let firstName = data?["firstName"] as? String ?? "No first name"
+                let lastName = data?["lastName"] as? String ?? "No last name"
+                let username = data?["username"] as? String ?? "No username"
+                
+                userInfo.append(firstName)
+                userInfo.append(lastName)
+                userInfo.append(username)
+                userInfo.append(email)
+                
+                completion(.success(userInfo))
+            }
+        }
+    }
 }

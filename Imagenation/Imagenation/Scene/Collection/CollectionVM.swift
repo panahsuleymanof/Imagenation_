@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CollectionViewModel {
+class CollectionVM {
     var collections = [Collection]()
     var searchedCollections = [Collection]()
     

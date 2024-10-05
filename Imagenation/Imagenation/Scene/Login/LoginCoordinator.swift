@@ -16,7 +16,7 @@ class LoginCoordinator: Coordinator {
     }
     
     func start() {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterController") as! RegisterController
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RegisterController") as! RegisterVC
         navigationController.show(controller, sender: nil)
     }
 }

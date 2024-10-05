@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PhotoDetailViewModel {
+class PhotoDetailVM {
     let firebaseManager = FirebaseManager.shared
     
     // Check if the photo is liked

@@ -1,22 +1,22 @@
 //
-//  CollectionPhotoViewModel.swift
+//  TopicViewModel.swift
 //  Imagenation
 //
-//  Created by Panah Suleymanli on 08.09.24.
+//  Created by Panah Suleymanli on 07.09.24.
 //
 
 import Foundation
 
-class CollectionPhotoViewModel {
+class TopicVM {
     var photos = [Photo]()
     var page = 1
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
-    let collectionManager = CollectionManager()
+    let photoManager = PhotoManager()
     
-    func getPhotos(collectionId: String) {
-        collectionManager.getPhotos(page: page, id: collectionId) { data, errorMessage in
+    func getPhotos(topicID: String) {
+        photoManager.getPhotos(page: page, id: topicID) { data, errorMessage in
             if let errorMessage {
                 self.error?(errorMessage)
             } else if let data {
@@ -30,7 +30,7 @@ class CollectionPhotoViewModel {
         print("index: \(index) and count: \(photos.count) and page: \(page)")
         if index == photos.count - 1 && page <= 1500 {
             page += 1
-            getPhotos(collectionId: id)
+            getPhotos(topicID: id)
         }
     }
 }

@@ -8,11 +8,11 @@
 import UIKit
 import Kingfisher
 
-class PhotoDetailController: UIViewController {
+class PhotoDetailVC: UIViewController {
     @IBOutlet private weak var image: UIImageView!
     @IBOutlet private weak var likeButton: UIButton!
     
-    let viewModel = PhotoDetailViewModel()
+    let viewModel = PhotoDetailVM()
     
     var photoId: String?
     var photoURL: String?
@@ -22,6 +22,7 @@ class PhotoDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         if let url = URL(string: photoURL ?? "") {
             image.kf.setImage(with: url)
         }
@@ -49,7 +50,7 @@ class PhotoDetailController: UIViewController {
     }
     
     @IBAction func infoButtonTapped(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "\(InfoController.self)") as! InfoController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "\(InfoVC.self)") as! InfoVC
         vc.imageDescription = altDescription ?? ""
         navigationController?.modalPresentationStyle = .popover
         navigationController?.present(vc, animated: true)

@@ -9,10 +9,10 @@ import UIKit
 import Alamofire
 import Kingfisher
 
-class HomeController: UIViewController {
+class HomeVC: UIViewController {
     @IBOutlet private weak var collection: UICollectionView!
     
-    let viewModel = HomeViewModel()
+    let viewModel = HomeVM()
     var selectedTopic: Topic?
 
     override func viewDidLoad() {
@@ -69,7 +69,7 @@ class HomeController: UIViewController {
     }
 }
 
-extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.photos.count
     }
@@ -89,9 +89,10 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(TopicHeaderView.self)", for: indexPath) as! TopicHeaderView
         header.configure(topics: viewModel.topics) { [weak self] topic in
             guard let self = self else { return }
-            collectionView.selectItem(at: IndexPath(row: 0, section: 0),
-                                      animated: true,
-                                      scrollPosition: .centeredVertically)
+//            collectionView.selectItem(at: IndexPath(row: 0, section: 0),
+//                                      animated: true,
+//                                      scrollPosition: .centeredVertically)
+            collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
             viewModel.page = 1
             selectedTopic = topic
             viewModel.getPhotos(topicID: topic.id, isFromTopic: true)
@@ -105,7 +106,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailController.self)") as! PhotoDetailController
+        let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailVC.self)") as! PhotoDetailVC
         let photo = viewModel.photos[indexPath.item]
         vc.photoURL = photo.urls.regular
         vc.username = photo.user.name
@@ -116,7 +117,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-extension HomeController: UICollectionViewDelegateFlowLayout {
+extension HomeVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let photo = viewModel.photos[indexPath.item]

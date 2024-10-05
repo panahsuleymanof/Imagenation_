@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchViewModel {
+class SearchVM {
     var topics = [Topic]()
     var photos = [Photo]()
     var searchedPhotos = [Photo]()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterController: UIViewController, UITextFieldDelegate {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var firstNameField: UITextField!
     @IBOutlet private weak var firstNameView: UIView!
     @IBOutlet private weak var lastNameField: UITextField!
@@ -19,7 +19,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var pswdField: UITextField!
     @IBOutlet private weak var pswdView: UIView!
     
-    let viewModel = RegisterViewModel()
+    let viewModel = RegisterVM()
     var logInCallBack: ((String, String) -> Void)?
 
     override func viewDidLoad() {

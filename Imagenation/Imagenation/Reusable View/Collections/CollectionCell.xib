@@ -36,7 +36,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSh-kB-WzI">
                         <rect key="frame" x="16.000000000000004" y="158.66666666666666" width="37.333333333333343" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                        <color key="textColor" systemColor="underPageBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -63,8 +63,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="underPageBackgroundColor">
+            <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="viewFlipsideBackgroundColor">
             <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

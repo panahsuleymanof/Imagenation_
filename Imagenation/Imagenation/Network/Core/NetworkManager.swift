@@ -28,6 +28,5 @@ class NetworkManager {
             }
         }
     }
-    
 }
 

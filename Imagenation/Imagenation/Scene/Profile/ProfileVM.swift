@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ProfileViewModel {
+class ProfileVM {
     var photos = [Photo]()
     var likedPhotos = [String]()
     var success: (() -> Void)?

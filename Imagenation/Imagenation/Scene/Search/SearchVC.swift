@@ -1,26 +1,30 @@
 //
-//  CollectionController.swift
+//  SearchController.swift
 //  Imagenation
 //
-//  Created by Panah Suleymanli on 07.09.24.
+//  Created by Panah Suleymanli on 04.09.24.
 //
 
 import UIKit
+import Kingfisher
 
-class CollectionController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var textField: UITextField!
+class SearchVC: UIViewController, UITextFieldDelegate {
+    @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var collection: UICollectionView!
     
-    let viewModel = CollectionViewModel()
+    let viewModel = SearchVM()
     let clearButton = UIButton(type: .custom)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCollection()
-        configureViewModel()
+        configureUI()
         configureNavigationBar()
-        setTextField()
+        collection.backgroundColor = .clear
+        configureViewModel()
+        
+        textField.delegate = self
         setupClearButton()
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     func configureNavigationBar() {
@@ -35,19 +39,24 @@ class CollectionController: UIViewController, UITextFieldDelegate {
         navigationController.navigationBar.backgroundColor = .clear
     }
     
-    func setTextField() {
+    func configureUI() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets.zero
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .vertical
+        
         textField.backgroundColor = .clear
         textField.attributedPlaceholder = NSAttributedString(
-            string: "Search collections",
+            string: "Search photos",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "a2a2a9")]
         )
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-    }
-    
-    func setCollection() {
-        collection.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
-        collection.backgroundColor = .clear
+        
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        
+        collection.register(UINib(nibName: "CategoryHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoryHeaderView")
+        collection.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
     }
     
     func setupClearButton() {
@@ -63,7 +72,7 @@ class CollectionController: UIViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, text.isEmpty {
-            clearButton.isHidden = true
+            clearButton.isHidden = true        
             viewModel.resetSearch()
             collection.reloadData()
         } else {
@@ -72,7 +81,7 @@ class CollectionController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func clearTextField() {
-        if !viewModel.searchedCollections.isEmpty {
+        if !viewModel.searchedPhotos.isEmpty {
             collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
             viewModel.resetSearch()
             collection.reloadData()
@@ -87,9 +96,10 @@ class CollectionController: UIViewController, UITextFieldDelegate {
     }
     
     func configureViewModel() {
-        viewModel.getCollections()
+        viewModel.getTopics()
+        viewModel.getPhotos()
         viewModel.error = { errorMessage in
-            print(errorMessage)
+            print("Error: \(errorMessage)")
         }
         viewModel.success = {
             self.collection.reloadData()
@@ -101,7 +111,7 @@ class CollectionController: UIViewController, UITextFieldDelegate {
             collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
             viewModel.resetSearch()
             viewModel.isSearching = true
-            viewModel.getSearchedCollections(query: text)
+            viewModel.getSearchedPhotos(query: text)
         } else {
             viewModel.resetSearch()
             collection.reloadData()
@@ -109,29 +119,44 @@ class CollectionController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension CollectionController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.searchedCollections.isEmpty ? viewModel.collections.count : viewModel.searchedCollections.count
+            viewModel.searchedPhotos.isEmpty ? viewModel.photos.count : viewModel.searchedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-        cell.layer.cornerRadius = 8
-        let collection: Collection
-        if viewModel.searchedCollections.isEmpty {
-            collection = viewModel.collections[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        let photo: Photo
+        if viewModel.searchedPhotos.isEmpty {
+            photo = viewModel.photos[indexPath.item]
         } else {
-            collection = viewModel.searchedCollections[indexPath.item]
+            photo = viewModel.searchedPhotos[indexPath.item]
         }
-        cell.author = collection.user?.name
-        cell.name = collection.title
-        cell.photoCount = collection.totalPhotos
-        cell.configure(with: collection)
+
+        if let url = URL(string: photo.urls.regular) {
+            cell.image.kf.setImage(with: url)
+            cell.userName.text = photo.user.name
+        }
+
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(CategoryHeaderView.self)", for: indexPath) as! CategoryHeaderView
+        header.configure(topics: viewModel.topics)
+        header.callBack = { topic in
+            let vc = self.storyboard?.instantiateViewController(identifier: "\(TopicVC.self)") as! TopicVC
+            vc.topicId = topic.id
+            vc.title = topic.title
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.show(vc, sender: nil)
+        }
+        return header
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: 200)
+        let width = collectionView.frame.width / 2
+        return CGSize(width: width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -145,17 +170,17 @@ extension CollectionController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "\(CollectionPhotosController.self)") as! CollectionPhotosController
-        let collection: Collection
-        if viewModel.searchedCollections.isEmpty {
-            collection = viewModel.collections[indexPath.item]
+        let vc = storyboard?.instantiateViewController(identifier: "\(PhotoDetailVC.self)") as! PhotoDetailVC
+        let photo: Photo
+        if viewModel.searchedPhotos.isEmpty {
+            photo = viewModel.photos[indexPath.item]
         } else {
-            collection = viewModel.searchedCollections[indexPath.item]
+            photo = viewModel.searchedPhotos[indexPath.item]
         }
-        vc.collectionId = collection.id
-        vc.title = collection.title
-        vc.setupAuthorLabel(name: collection.user?.name ?? "")
-        
+        vc.photoURL = photo.urls.raw
+        vc.username = photo.user.name
+        vc.photoId = photo.id
+        vc.altDescription = photo.altDescription
         vc.hidesBottomBarWhenPushed = true
         navigationController?.show(vc, sender: nil)
     }

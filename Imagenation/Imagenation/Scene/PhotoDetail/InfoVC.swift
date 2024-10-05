@@ -7,13 +7,14 @@
 
 import UIKit
 
-class InfoController: UIViewController {
+class InfoVC: UIViewController {
     @IBOutlet private weak var descriptionLabel: UILabel!
     
     var imageDescription: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         if let imageDescription = imageDescription {
             descriptionLabel.text = imageDescription
         }
@@ -22,5 +23,4 @@ class InfoController: UIViewController {
     @IBAction func closeTapped(_ sender: Any) {
         dismiss(animated: true)
     }
-    
 }

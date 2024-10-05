@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RegisterViewModel {
+class RegisterVM {
     var registerSuccess: (() -> Void)?
     var registerFailed: ((String) -> Void)?
     
