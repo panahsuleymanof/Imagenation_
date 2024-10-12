@@ -11,7 +11,6 @@ class UserInformationVC: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
 
-    
     let viewModel = UserInformationVM()
     let email = UserDefaults.standard.string(forKey: "email")
     
@@ -64,8 +63,5 @@ extension UserInformationVC: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.text = viewModel.userDetail[indexPath.item]
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Profile"
-    }
+  
 }

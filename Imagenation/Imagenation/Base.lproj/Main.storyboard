@@ -12,7 +12,7 @@
         <!--SearchVC-->
         <scene sceneID="p1u-Fe-kr0">
             <objects>
-                <viewController storyboardIdentifier="SearchController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WDh-QA-RdI" customClass="SearchVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WDh-QA-RdI" customClass="SearchVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2P1-BU-OMi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,7 +101,7 @@
         <!--TopicVC-->
         <scene sceneID="2bm-Qd-QHF">
             <objects>
-                <viewController storyboardIdentifier="TopicController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XD4-Pw-WiX" customClass="TopicVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopicVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XD4-Pw-WiX" customClass="TopicVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a9m-uQ-wUK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,7 +142,7 @@
         <!--InfoVC-->
         <scene sceneID="e5G-Mw-QKy">
             <objects>
-                <viewController storyboardIdentifier="InfoController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UeJ-Ie-hja" customClass="InfoVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UeJ-Ie-hja" customClass="InfoVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7qF-rX-QJ3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,7 +215,7 @@
         <!--Photo DetailVC-->
         <scene sceneID="rtI-40-hRq">
             <objects>
-                <viewController storyboardIdentifier="PhotoDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfy-EP-K8q" customClass="PhotoDetailVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rfy-EP-K8q" customClass="PhotoDetailVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VGp-pD-KUq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -282,7 +282,7 @@
         <!--Collection PhotosVC-->
         <scene sceneID="LqW-sw-CQt">
             <objects>
-                <viewController storyboardIdentifier="CollectionPhotosController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQL-m2-kVL" customClass="CollectionPhotosVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionPhotosVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQL-m2-kVL" customClass="CollectionPhotosVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SoG-uG-oCa">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,7 +333,7 @@
         <!--CollectionVC-->
         <scene sceneID="I7I-KE-Fot">
             <objects>
-                <viewController storyboardIdentifier="CollectionController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NbI-ji-rfn" customClass="CollectionVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NbI-ji-rfn" customClass="CollectionVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ztb-Hl-D7r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -418,7 +418,7 @@
         <!--ProfileVC-->
         <scene sceneID="sLP-84-niM">
             <objects>
-                <viewController storyboardIdentifier="ProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HbL-NA-63l" customClass="ProfileVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HbL-NA-63l" customClass="ProfileVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3WY-gl-YSD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -500,7 +500,7 @@
         <!--HomeVC-->
         <scene sceneID="euo-VS-t0I">
             <objects>
-                <viewController storyboardIdentifier="HomeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pXA-st-Oa6" customClass="HomeVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pXA-st-Oa6" customClass="HomeVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zGs-bi-am2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -680,7 +680,7 @@
         <!--RegisterVC-->
         <scene sceneID="zQa-S7-UdN">
             <objects>
-                <viewController storyboardIdentifier="RegisterController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sz9-b0-82S" customClass="RegisterVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sz9-b0-82S" customClass="RegisterVC" customModule="Imagenation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iux-5Q-mCC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

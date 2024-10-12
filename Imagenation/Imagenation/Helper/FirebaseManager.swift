@@ -144,4 +144,32 @@ class FirebaseManager {
             }
         }
     }
+    
+    func reauthenticateUser(email: String, currentPassword: String, completion: @escaping (Bool) -> Void) {
+        let user = Auth.auth().currentUser
+        let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+        
+        user?.reauthenticate(with: credential) { result, error in
+            if let error = error {
+                print("Reauthentication failed: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                print("Reauthentication successful!")
+                completion(true)
+            }
+        }
+    }
+    
+    func changePassword(newPassword: String) {
+        let user = Auth.auth().currentUser
+        
+        user?.updatePassword(to: newPassword) { error in
+            if let error = error {
+                print("Error updating password: \(error.localizedDescription)")
+            } else {
+                print("Password updated successfully!")
+            }
+        }
+    }
+
 }

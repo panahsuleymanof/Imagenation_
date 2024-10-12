@@ -40,6 +40,10 @@
 		C1445B212CA093D1003664C7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B202CA093D1003664C7 /* Settings.swift */; };
 		C1445B242CABCDF7003664C7 /* UserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B232CABCDF6003664C7 /* UserInformationVC.swift */; };
 		C1445B262CAD259F003664C7 /* UserInformationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B252CAD259F003664C7 /* UserInformationVM.swift */; };
+		C1445B2E2CB70CBF003664C7 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B2D2CB70CBF003664C7 /* ChangePasswordVC.swift */; };
+		C1445B302CB70CEC003664C7 /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B2F2CB70CEB003664C7 /* ChangePasswordVM.swift */; };
+		C1445B372CBADDAF003664C7 /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B362CBADDAF003664C7 /* AccountVC.swift */; };
+		C1445B392CBADDB9003664C7 /* AccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1445B382CBADDB9003664C7 /* AccountVM.swift */; };
 		C16532492C76331D007BDF7F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C16532482C76331D007BDF7F /* Kingfisher */; };
 		C1757BD72C7635D3006F4F1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C1757BD62C7635D3006F4F1C /* Alamofire */; };
 		C199CFA82C54E3FF00E2A22F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199CFA72C54E3FF00E2A22F /* AppDelegate.swift */; };
@@ -102,6 +106,10 @@
 		C1445B202CA093D1003664C7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C1445B232CABCDF6003664C7 /* UserInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationVC.swift; sourceTree = "<group>"; };
 		C1445B252CAD259F003664C7 /* UserInformationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationVM.swift; sourceTree = "<group>"; };
+		C1445B2D2CB70CBF003664C7 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		C1445B2F2CB70CEB003664C7 /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
+		C1445B362CBADDAF003664C7 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
+		C1445B382CBADDB9003664C7 /* AccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVM.swift; sourceTree = "<group>"; };
 		C199CFA42C54E3FF00E2A22F /* Imagenation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imagenation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C199CFA72C54E3FF00E2A22F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C199CFA92C54E3FF00E2A22F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,10 +297,38 @@
 			isa = PBXGroup;
 			children = (
 				C1445B202CA093D1003664C7 /* Settings.swift */,
+				C1445B312CB8FC09003664C7 /* User Information */,
+				C1445B322CB8FD5E003664C7 /* Change Password */,
+				C1445B352CBADD29003664C7 /* Account */,
+			);
+			path = "Account Settings";
+			sourceTree = "<group>";
+		};
+		C1445B312CB8FC09003664C7 /* User Information */ = {
+			isa = PBXGroup;
+			children = (
 				C1445B232CABCDF6003664C7 /* UserInformationVC.swift */,
 				C1445B252CAD259F003664C7 /* UserInformationVM.swift */,
 			);
-			path = "Account Settings";
+			path = "User Information";
+			sourceTree = "<group>";
+		};
+		C1445B322CB8FD5E003664C7 /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				C1445B2D2CB70CBF003664C7 /* ChangePasswordVC.swift */,
+				C1445B2F2CB70CEB003664C7 /* ChangePasswordVM.swift */,
+			);
+			path = "Change Password";
+			sourceTree = "<group>";
+		};
+		C1445B352CBADD29003664C7 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				C1445B362CBADDAF003664C7 /* AccountVC.swift */,
+				C1445B382CBADDB9003664C7 /* AccountVM.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		C199CF9B2C54E3FF00E2A22F = {
@@ -567,12 +603,16 @@
 				C1CA99F82C8C8C6700132460 /* CollectionVC.swift in Sources */,
 				C199D0462C6F93C000E2A22F /* Struct.swift in Sources */,
 				C139919A2C7A3A5E00DF0936 /* TopicEndpoint.swift in Sources */,
+				C1445B372CBADDAF003664C7 /* AccountVC.swift in Sources */,
 				C11B9D3F2C90DAB000D1EFEB /* InfoVC.swift in Sources */,
 				C11B9BCD2C88462700E190D4 /* SearchVC.swift in Sources */,
 				C139919C2C7A3A7400DF0936 /* TopicManager.swift in Sources */,
 				C1445B242CABCDF7003664C7 /* UserInformationVC.swift in Sources */,
+				C1445B302CB70CEC003664C7 /* ChangePasswordVM.swift in Sources */,
 				C11B9BCF2C88463A00E190D4 /* SearchVM.swift in Sources */,
+				C1445B2E2CB70CBF003664C7 /* ChangePasswordVC.swift in Sources */,
 				C1445B262CAD259F003664C7 /* UserInformationVM.swift in Sources */,
+				C1445B392CBADDB9003664C7 /* AccountVM.swift in Sources */,
 				C12147052C78B62200E095BA /* ImageCell.swift in Sources */,
 				C1CA99F02C8C776900132460 /* TopicVM.swift in Sources */,
 				C13991A12C7CA34000DF0936 /* PhotoEndpoint.swift in Sources */,

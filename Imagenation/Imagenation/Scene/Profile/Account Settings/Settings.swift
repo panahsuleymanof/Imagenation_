@@ -44,7 +44,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             appearance.titleTextAttributes = [
                 .foregroundColor: UIColor.label
             ]
-
+            
             navigationBar.standardAppearance = appearance
             navigationBar.scrollEdgeAppearance = appearance
         }
@@ -117,13 +117,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let selectedItem = sections[indexPath.section][indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let vc = UserInformationVC()
-            navigationController?.show(vc, sender: nil)
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let vc = UserInformationVC()
+                navigationController?.show(vc, sender: nil)
+            } else if indexPath.row == 1 {
+                let vc = ChangePasswordVC()
+                navigationController?.show(vc, sender: nil)
+            }
         } else {
             print("Selected \(selectedItem)")
         }
         print("Selected \(sections[indexPath.section][indexPath.row])")
     }
 }
- 
+
