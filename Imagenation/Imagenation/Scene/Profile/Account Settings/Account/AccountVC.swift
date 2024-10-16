@@ -17,6 +17,10 @@ class AccountVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return il
     }()
     
+    var userEmail = UserDefaults.standard.string(forKey: "email")
+
+    let viewModel = AccountVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Close Account"
@@ -37,6 +41,26 @@ class AccountVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ])
     }
     
+    func logout() {
+        let alertController = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account?", preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            UserDefaults.standard.set("", forKey: "email")
+            UserDefaults.standard.set(false, forKey: "isLoggedIn")
+            UserDefaults.standard.set("", forKey: "fullName")
+            let scene = UIApplication.shared.connectedScenes.first
+            if let sceneDelegate: SceneDelegate = scene?.delegate as? SceneDelegate {
+                sceneDelegate.setLoginAsRoot()
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     // MARK: - TableView DataSource Methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,8 +145,10 @@ class AccountVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Button Action
     
     @objc func closeAccountTapped() {
-        if let password = passwordTextField.text, !password.isEmpty {
-            showErrorAlert(message: "Password: \(password)")
+        if let password = passwordTextField.text,
+           let email = userEmail, !password.isEmpty {
+            viewModel.deleteUser(email: email, password: password)
+            logout()
         } else {
             showErrorAlert(message: "Password is empty")
         }
