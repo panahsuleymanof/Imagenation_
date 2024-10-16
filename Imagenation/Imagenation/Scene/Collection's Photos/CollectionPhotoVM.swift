@@ -16,12 +16,12 @@ class CollectionPhotoVM {
     let collectionManager = CollectionManager()
     
     func getPhotos(collectionId: String) {
-        collectionManager.getPhotos(page: page, id: collectionId) { data, errorMessage in
+        collectionManager.getPhotos(page: page, id: collectionId) { [weak self] data, errorMessage in
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.photos.append(contentsOf: data)
-                self.success?()
+                self?.photos.append(contentsOf: data)
+                self?.success?()
             }
         }
     }

@@ -124,6 +124,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             } else if indexPath.row == 1 {
                 let vc = ChangePasswordVC()
                 navigationController?.show(vc, sender: nil)
+            } else if indexPath.row == 2 {
+                let vc = AccountVC()
+                navigationController?.show(vc, sender: nil)
             }
         } else {
             print("Selected \(selectedItem)")

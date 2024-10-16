@@ -12,7 +12,7 @@ class ChangePasswordVC: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     let passwordPlaceholders = ["Current Password","New Password", "Confirm New Password"]
-    var passwordTextFields: [UITextField] = []
+    var passwordTextFields = [UITextField]()
     
     var userEmail = UserDefaults.standard.string(forKey: "email")
 

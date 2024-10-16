@@ -172,4 +172,28 @@ class FirebaseManager {
         }
     }
 
+    private func deleteDocument(forUserEmail email: String) {
+        let documentRef = database.collection("Users").document(email)
+        
+        documentRef.delete { error in
+            if let error = error {
+                print("Error removing document: \(error.localizedDescription)")
+            } else {
+                print("Document successfully deleted!")
+            }
+        }
+    }
+    
+    func deleteUser(forUserEmail email: String) {
+        let user = Auth.auth().currentUser
+
+        user?.delete { error in
+          if let error = error {
+              print("Error deleting account: \(error.localizedDescription)")
+          } else {
+              self.deleteDocument(forUserEmail: email)
+              print("Account deleted successfully!")
+          }
+        }
+    }
 }

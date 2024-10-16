@@ -13,15 +13,14 @@ class ProfileVM {
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
-    let firebaseManager = FirebaseManager.shared
     let discoverManager = DiscoverManager()
 
     func getIds(email: String) {
-        firebaseManager.getLikedPhotos(forUserEmail: email) { data in
-            self.likedPhotos = data
-            self.photos.removeAll()
-            self.getPhotosByIds(photoIds: data)
-            self.reloadUI()
+        FirebaseManager.shared.getLikedPhotos(forUserEmail: email) { [weak self] data in
+            self?.likedPhotos = data
+            self?.photos.removeAll()
+            self?.getPhotosByIds(photoIds: data)
+            self?.reloadUI()
         }
     }
 

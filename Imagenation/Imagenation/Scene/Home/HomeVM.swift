@@ -19,30 +19,30 @@ class HomeVM {
     let photoManager = PhotoManager()
     
     func getTopics() {
-        topicManager.getTopics() { data, errorMessage in
+        topicManager.getTopics() { [weak self] data, errorMessage in
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.topics.append(contentsOf: data)
-                self.isTopicsFetched = true
+                self?.topics.append(contentsOf: data)
+                self?.isTopicsFetched = true
                 if let firstTopicID = data.first?.id {
-                    self.getPhotos(topicID: firstTopicID, isFromTopic: true)
+                    self?.getPhotos(topicID: firstTopicID, isFromTopic: true)
                 }
-                self.success?()
+                self?.success?()
             }
         }
     }
     
     func getPhotos(topicID: String, isFromTopic: Bool = false) {
-        photoManager.getPhotos(page: page, id: topicID) { data, errorMessage in
+        photoManager.getPhotos(page: page, id: topicID) { [weak self] data, errorMessage in
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
                 if isFromTopic {
-                    self.photos.removeAll()
+                    self?.photos.removeAll()
                 }
-                self.photos.append(contentsOf: data)
-                self.success?()
+                self?.photos.append(contentsOf: data)
+                self?.success?()
             }
         }
     }

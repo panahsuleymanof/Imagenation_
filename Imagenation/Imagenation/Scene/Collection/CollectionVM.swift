@@ -25,26 +25,25 @@ class CollectionVM {
     func getCollections() {
         guard !isLoading else { return } // Prevent multiple loads
         isLoading = true
-        collectionManager.getCollections(page: page) { data, errorMessage in
-            self.isLoading = false
+        collectionManager.getCollections(page: page) { [weak self] data, errorMessage in
+            self?.isLoading = false
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.collections.append(contentsOf: data)
-                self.success?()
+                self?.collections.append(contentsOf: data)
+                self?.success?()
             }
         }
     }
     
     func getSearchedCollections(query: String) {
-        collectionManager.searchCollection(query: query, page: searchPage) { data, errorMessage in
-            self.isLoading = false
+        collectionManager.searchCollection(query: query, page: searchPage) { [weak self] data, errorMessage in
+            self?.isLoading = false
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.searchedCollections.append(contentsOf: data.results)
-                print(self.searchedCollections)
-                self.success?()
+                self?.searchedCollections.append(contentsOf: data.results)
+                self?.success?()
             }
         }
     }

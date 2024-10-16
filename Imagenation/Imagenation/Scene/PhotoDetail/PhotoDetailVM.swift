@@ -8,28 +8,23 @@
 import Foundation
 
 class PhotoDetailVM {
-    let firebaseManager = FirebaseManager.shared
     
-    // Check if the photo is liked
     func isPhotoLiked(forUserEmail email: String, photoId: String, completion: @escaping (Bool) -> Void) {
-        firebaseManager.isPhotoLiked(forUserEmail: email, photoId: photoId, completion: completion)
+        FirebaseManager.shared.isPhotoLiked(forUserEmail: email, photoId: photoId, completion: completion)
     }
     
-    // Toggle like/dislike status
     func toggleLikeStatus(forUserEmail email: String, photoId: String, completion: @escaping (Bool) -> Void) {
-        firebaseManager.isPhotoLiked(forUserEmail: email, photoId: photoId) { isLiked in
+        FirebaseManager.shared.isPhotoLiked(forUserEmail: email, photoId: photoId) { isLiked in
             if isLiked {
-                // Dislike the photo if it is currently liked
-                self.firebaseManager.dislikePhoto(forUserEmail: email, photoId: photoId) { result in
+                FirebaseManager.shared.dislikePhoto(forUserEmail: email, photoId: photoId) { result in
                     if case .success = result {
-                        completion(false)  // Photo is now disliked
+                        completion(false)
                     }
                 }
             } else {
-                // Like the photo if it is currently not liked
-                self.firebaseManager.likePhoto(forUserEmail: email, photoId: photoId) { result in
+                FirebaseManager.shared.likePhoto(forUserEmail: email, photoId: photoId) { result in
                     if case .success = result {
-                        completion(true)  // Photo is now liked
+                        completion(true)
                     }
                 }
             }

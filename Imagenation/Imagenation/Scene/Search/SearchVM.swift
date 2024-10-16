@@ -25,12 +25,12 @@ class SearchVM {
     let discoverManager = DiscoverManager()
     
     func getTopics() {
-            topicManager.getTopics() { data, errorMessage in
+            topicManager.getTopics() { [weak self] data, errorMessage in
                 if let errorMessage {
-                    self.error?(errorMessage)
+                    self?.error?(errorMessage)
                 } else if let data {
-                    self.topics.append(contentsOf: data)
-                    self.success?()
+                    self?.topics.append(contentsOf: data)
+                    self?.success?()
                 }
             }
     }
@@ -38,13 +38,13 @@ class SearchVM {
     func getPhotos() {
         guard !isLoading else { return } // Prevent multiple loads
         isLoading = true
-        discoverManager.getPhotos(page: page) { data, errorMessage in
-            self.isLoading = false
+        discoverManager.getPhotos(page: page) { [weak self] data, errorMessage in
+            self?.isLoading = false
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.photos.append(contentsOf: data)
-                self.success?()
+                self?.photos.append(contentsOf: data)
+                self?.success?()
             }
         }
     }
@@ -52,13 +52,13 @@ class SearchVM {
     func getSearchedPhotos(query: String) {
         guard !isLoading else { return } // Prevent multiple loads
         isLoading = true
-        discoverManager.searchPhotos(query: query, page: searchPage) { data, errorMessage in
-            self.isLoading = false
+        discoverManager.searchPhotos(query: query, page: searchPage) { [weak self] data, errorMessage in
+            self?.isLoading = false
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.searchedPhotos.append(contentsOf: data.results)
-                self.success?()
+                self?.searchedPhotos.append(contentsOf: data.results)
+                self?.success?()
             }
         }
     }

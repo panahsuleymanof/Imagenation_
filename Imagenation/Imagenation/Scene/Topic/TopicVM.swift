@@ -16,12 +16,12 @@ class TopicVM {
     let photoManager = PhotoManager()
     
     func getPhotos(topicID: String) {
-        photoManager.getPhotos(page: page, id: topicID) { data, errorMessage in
+        photoManager.getPhotos(page: page, id: topicID) { [weak self] data, errorMessage in
             if let errorMessage {
-                self.error?(errorMessage)
+                self?.error?(errorMessage)
             } else if let data {
-                self.photos.append(contentsOf: data)
-                self.success?()
+                self?.photos.append(contentsOf: data)
+                self?.success?()
             }
         }
     }
