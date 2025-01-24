@@ -7,6 +7,7 @@
 
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +16,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     let sections = [
         ["User Info", "Change Password", "Account"],
         ["Privacy & Policy", "Terms of Service"]
+    ]
+    
+    let sectionLinks = [
+        [],
+        ["https://unsplash.com/privacy",
+         "https://unsplash.com/terms"]
     ]
     
     override func viewDidLoad() {
@@ -26,14 +33,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func setupNavigationBar() {
         title = "Settings"
-        
         navigationController?.navigationBar.tintColor = .lightGray
         
         let dismissButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissView))
         navigationItem.leftBarButtonItem = dismissButton
-        
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backButton
     }
     
     func customizeNavigationBarAppearance() {
@@ -72,7 +75,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         ])
     }
     
-    // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
     }
@@ -95,7 +97,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    // MARK: - TableView Section Headers
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Account Settings"
@@ -104,34 +105,39 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // MARK: - TableView Section Footers
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if section == 1 {
-            return "Review the legal documents."
-        }
-        return nil
-    }
-    
-    // MARK: - TableView Delegate for Row Selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = sections[indexPath.section][indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                let vc = UserInformationVC()
-                navigationController?.show(vc, sender: nil)
-            } else if indexPath.row == 1 {
-                let vc = ChangePasswordVC()
-                navigationController?.show(vc, sender: nil)
-            } else if indexPath.row == 2 {
-                let vc = AccountVC()
-                navigationController?.show(vc, sender: nil)
-            }
-        } else {
-            print("Selected \(selectedItem)")
+            handleAccountSelection(indexPath: indexPath)
+        } else if indexPath.section == 1 {
+            handleLegalSelection(indexPath: indexPath)
         }
-        print("Selected \(sections[indexPath.section][indexPath.row])")
+    }
+    
+    private func handleAccountSelection(indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let vc = UserInformationVC()
+            navigationController?.show(vc, sender: nil)
+        } else if indexPath.row == 1 {
+            let vc = ChangePasswordVC()
+            navigationController?.show(vc, sender: nil)
+        } else if indexPath.row == 2 {
+            let vc = AccountVC()
+            navigationController?.show(vc, sender: nil)
+        }
+    }
+    
+    private func handleLegalSelection(indexPath: IndexPath) {
+        let urlString = sectionLinks[indexPath.section][indexPath.row]
+        guard let url = URL(string: urlString) else { return }
+        openWebView(url: url)
+    }
+    
+    private func openWebView(url: URL) {
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.modalPresentationStyle = .formSheet
+        present(safariVC, animated: true)
     }
 }
 
