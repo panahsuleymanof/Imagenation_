@@ -10,31 +10,38 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var authCoordinator: AuthCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
         
+        window = UIWindow(windowScene: windowScene)
+        let navController = UINavigationController()
+        authCoordinator = AuthCoordinator(navigationController: navController)
+
         if UserDefaults.standard.bool(forKey: "isLoggedIn") {
             setHomeAsRoot()
         } else {
-            setLoginAsRoot()
+            authCoordinator?.start()
+            window?.rootViewController = navController
+            window?.makeKeyAndVisible()
         }
     }
     
     func setHomeAsRoot() {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-        window?.rootViewController = controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeController = storyboard.instantiateViewController(withIdentifier: "tabBar")
+        window?.rootViewController = homeController
         window?.makeKeyAndVisible()
     }
-    
+
     func setLoginAsRoot() {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navBar")
-        window?.rootViewController = controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navController = storyboard.instantiateViewController(withIdentifier: "navBar") as! UINavigationController
+        authCoordinator = AuthCoordinator(navigationController: navController)
+        authCoordinator?.start()
+        
+        window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }
 

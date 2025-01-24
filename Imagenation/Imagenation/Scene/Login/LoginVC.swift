@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginVC: UIViewController, UITextFieldDelegate {
+    var coordinator: AuthCoordinator?
+
     @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var emailFieldView: UIView!
     @IBOutlet private weak var pswdField: UITextField!
@@ -21,13 +23,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         configureUI()
         setupBindings()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setChangableColor(textfield: emailField, view: emailFieldView, color: .lightGray)
         setChangableColor(textfield: pswdField, view: pswdFieldView, color: .lightGray)
     }
-    
+
     private func configureUI() {
         title = "Login"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -36,11 +38,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         emailField.delegate = self
         pswdField.delegate = self
     }
-    
+
     private func setupBindings() {
         viewModel.loginSuccess = { [weak self] in
             DispatchQueue.main.async {
-                self?.navigateToHome()
+                self?.coordinator?.navigateToHome()
             }
         }
         
@@ -50,33 +52,29 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
+
     @IBAction func logInTapped(_ sender: Any) {
-        guard let email = emailField.text, let password = pswdField.text else {
-            return
-        }
+        guard let email = emailField.text, let password = pswdField.text else { return }
         viewModel.loginUser(email: email, password: password)
     }
-    
+
     @IBAction func joinTapped(_ sender: Any) {
-        let registerVC = storyboard?.instantiateViewController(withIdentifier: "\(RegisterVC.self)") as! RegisterVC
-        registerVC.logInCallBack = { [weak self] email, password in
-            self?.emailField.text = email
-            self?.pswdField.text = password
-        }
-        navigationController?.show(registerVC, sender: nil)
+        coordinator?.navigateToRegister()
     }
-    
-    // MARK: - TextField Delegate Methods
+
+    func setEmailAndPassword(email: String, password: String) {
+        emailField.text = email
+        pswdField.text = password
+    }
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateColor(textField: textField, color: .white)
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateColor(textField: textField, color: .lightGray)
     }
-    
-    // MARK: - Helper Methods
+
     private func updateColor(textField: UITextField, color: UIColor) {
         if textField == emailField {
             setChangableColor(textfield: emailField, view: emailFieldView, color: color)
@@ -84,7 +82,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             setChangableColor(textfield: pswdField, view: pswdFieldView, color: color)
         }
     }
-    
+
     private func setChangableColor(textfield: UITextField, view: UIView, color: UIColor) {
         if let placeholder = textfield.placeholder {
             textfield.attributedPlaceholder = NSAttributedString(
@@ -94,14 +92,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             view.backgroundColor = color
         }
     }
-    
-    private func navigateToHome() {
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sceneDelegate: SceneDelegate = scene?.delegate as? SceneDelegate {
-            sceneDelegate.setHomeAsRoot()
-        }
-    }
-    
+
     private func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))

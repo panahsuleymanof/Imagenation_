@@ -50,10 +50,19 @@ class PhotoDetailVC: UIViewController {
     }
     
     @IBAction func infoButtonTapped(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "\(InfoVC.self)") as! InfoVC
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "\(InfoVC.self)") as? InfoVC else {
+            print("Error: Unable to instantiate InfoVC")
+            return
+        }
         vc.imageDescription = altDescription ?? ""
-        navigationController?.modalPresentationStyle = .popover
-        navigationController?.present(vc, animated: true)
+        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 20
+        }
+
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func downloadTapped(_ sender: Any) {

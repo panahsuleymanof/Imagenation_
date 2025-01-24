@@ -89,9 +89,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "\(TopicHeaderView.self)", for: indexPath) as! TopicHeaderView
         header.configure(topics: viewModel.topics) { [weak self] topic in
             guard let self = self else { return }
-//            collectionView.selectItem(at: IndexPath(row: 0, section: 0),
-//                                      animated: true,
-//                                      scrollPosition: .centeredVertically)
             collection.setContentOffset(CGPoint(x: 0, y: -collection.contentInset.top), animated: true)
             viewModel.page = 1
             selectedTopic = topic

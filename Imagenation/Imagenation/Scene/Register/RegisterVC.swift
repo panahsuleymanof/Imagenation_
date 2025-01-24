@@ -8,6 +8,8 @@
 import UIKit
 
 class RegisterVC: UIViewController, UITextFieldDelegate {
+    var coordinator: AuthCoordinator?
+
     @IBOutlet private weak var firstNameField: UITextField!
     @IBOutlet private weak var firstNameView: UIView!
     @IBOutlet private weak var lastNameField: UITextField!
@@ -28,7 +30,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         configureUI()
         setupBindings()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setChangableColor(textfield: firstNameField, view: firstNameView, color: .lightGray)
@@ -37,7 +39,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         setChangableColor(textfield: emailField, view: emailView, color: .lightGray)
         setChangableColor(textfield: pswdField, view: pswdView, color: .lightGray)
     }
-    
+
     private func configureUI() {
         title = "Join Imagenation"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -49,7 +51,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         emailField.delegate = self
         pswdField.delegate = self
     }
-    
+
     private func setupBindings() {
         viewModel.registerSuccess = { [weak self] in
             guard let self = self, let email = self.emailField.text, let password = self.pswdField.text else { return }
@@ -69,13 +71,11 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
               let lastName = lastNameField.text,
               let username = usernameField.text,
               let email = emailField.text,
-              let password = pswdField.text else {
-                  return
-              }
+              let password = pswdField.text else { return }
 
         viewModel.registerUser(firstName: firstName, lastName: lastName, username: username, email: email, password: password)
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateColor(textField: textField, color: .white)
     }
@@ -110,7 +110,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             view.backgroundColor = color
         }
     }
-    
+
     private func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
